@@ -6,8 +6,12 @@ controllers:
 
 
 app_Instrument:
-    path: /Instrument
+    path: /instrument
     controller: App\Controller\InstrumentController::index
+
+app_lister_instrument:
+    path: /instrument/lister
+    controller: App\Controller\InstrumentController::lister
 
 app_cours:
     path: /cours
