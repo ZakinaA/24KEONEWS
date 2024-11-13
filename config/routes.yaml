@@ -20,3 +20,7 @@ app_intervention:
 app_eleve:
     path: /eleve
     controller: App\Controller\EleveController::index
+    
+app_eleve_lister:
+    path: /eleve/lister
+    controller: App\Controller\EleveController::lister
