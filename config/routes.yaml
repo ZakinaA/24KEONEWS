@@ -24,7 +24,7 @@ app_intervention:
 
 app_intervention_lister:
     path: /intervention/lister
-    controller: App\Controller\InterventionController::listerIntervention
+    controller: App\Controller\InterventionController::lister
 
 #Eleve
 
