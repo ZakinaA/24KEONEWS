@@ -18,7 +18,7 @@ class InterventionController extends AbstractController
         ]);
     }
 
-    public function listerIntervention(ManagerRegistry $doctrine)
+    public function lister(ManagerRegistry $doctrine)
     {
         $interventions = $doctrine->getRepository(Intervention::class)->findAll();
 
