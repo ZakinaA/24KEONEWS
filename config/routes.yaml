@@ -7,7 +7,3 @@ controllers:
 app_cours:
     path: /cours
     controller: App\Controller\CoursController::index
-
-coursLister:
-    path: /cours/lister
-    controller: App\Controller\CoursController::lister

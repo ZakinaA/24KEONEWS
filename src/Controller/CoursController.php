@@ -15,14 +15,4 @@ class CoursController extends AbstractController
             'controller_name' => 'CoursController',
         ]);
     }
-
-    public function listerCours(ManagerRegistry $doctrine){
-
-        $repository = $doctrine->getRepository(Cours::class);
-
-    $cours= $repository->findAll();
-    return $this->render('cours/lister.html.twig', [
-        'pCours' => $cours,]);	
-    
-}
 }
