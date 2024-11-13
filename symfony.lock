@@ -51,6 +51,7 @@
         "files": [
             "./public/.htaccess"
         ]
+        }
     },
     "symfony/asset-mapper": {
         "version": "6.3",
