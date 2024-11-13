@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Cours;
+
 
 class CoursController extends AbstractController
 {
@@ -14,5 +17,16 @@ class CoursController extends AbstractController
         return $this->render('cours/index.html.twig', [
             'controller_name' => 'CoursController',
         ]);
+    }
+
+    public function lister(ManagerRegistry $doctrine){
+
+        $repository = $doctrine->getRepository(Cours::class);
+        $cours= $repository->findAll();
+
+        return $this->render('cours/lister.html.twig', [
+            'pCours' => $cours,
+        ]);	
+        
     }
 }

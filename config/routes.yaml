@@ -13,6 +13,10 @@ app_cours:
     path: /cours
     controller: App\Controller\CoursController::index
 
+app_cours_lister:
+    path: /cours/lister
+    controller: App\Controller\CoursController::lister
+
 app_intervention:
     path: /intervention
     controller: App\Controller\InterventionController::index
@@ -20,3 +24,4 @@ app_intervention:
 app_eleve:
     path: /eleve
     controller: App\Controller\EleveController::index
+
