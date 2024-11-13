@@ -4,19 +4,31 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+# Instrument
 
 app_Instrument:
     path: /Instrument
     controller: App\Controller\InstrumentController::index
 
+# Cours
+
 app_cours:
     path: /cours
     controller: App\Controller\CoursController::index
 
+# Intervention
+
 app_intervention:
     path: /intervention
     controller: App\Controller\InterventionController::index
-    
+
+app_intervention_lister:
+    path: /intervention/lister
+    controller: App\Controller\InterventionController::listerIntervention
+
+#Eleve
+
 app_eleve:
     path: /eleve
     controller: App\Controller\EleveController::index
+    
