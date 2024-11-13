@@ -7,3 +7,7 @@ controllers:
 app_intervention:
     path: /intervention
     controller: App\Controller\InterventionController::index
+    
+app_eleve:
+    path: /eleve
+    controller: App\Controller\EleveController::index
