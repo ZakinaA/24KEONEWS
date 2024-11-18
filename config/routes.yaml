@@ -18,6 +18,10 @@ app_consulter_instrument:
     path: /instrument/consulter/{id}
     controller: App\Controller\InstrumentController::consulter
 
+app_ajouter_instrument:
+    path: /instrument/ajouter
+    controller: App\Controller\InstrumentController::ajouter
+
 # Cours
 
 app_cours:
