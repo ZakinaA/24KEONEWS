@@ -58,6 +58,10 @@ app_intervention_ajouter:
     path: /intervention/ajouter
     controller: App\Controller\InterventionController::ajouter
 
+app_intervention_modifier:
+    path: /intervention/modifier/{id}
+    controller: App\Controller\InterventionController::modifier
+
 #Eleve
 
 app_eleve:
