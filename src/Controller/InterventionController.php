@@ -93,5 +93,20 @@ class InterventionController extends AbstractController
                }
             }
      }
+
+     public function supprimer(ManagerRegistry $doctrine, int $id): Response
+     {
+         $intervention = $doctrine->getRepository(Intervention::class)->find($id);
+ 
+         if (!$intervention) {
+             throw $this->createNotFoundException('Aucune intervention trouvé avec l\'ID '.$id);
+         }
+ 
+         $entityManager = $doctrine->getManager();
+         $entityManager->remove($intervention); 
+         $entityManager->flush();
+ 
+         return $this->redirectToRoute('app_intervention_lister');
+     }
      
 }
