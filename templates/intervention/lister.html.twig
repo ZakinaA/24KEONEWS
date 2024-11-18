@@ -13,9 +13,9 @@
 		<table>
             {% for i in pInterventions %}
             <tr>
-                <td>{{ i.id }}</td>
-                <td>{{ i.descriptif }}</td>
-                <td>{{ i.prix }}</td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.id }}</a></td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.descriptif }}</a></td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.prix }}</a></td>
             </tr>
             {% else %}
             <tr>
