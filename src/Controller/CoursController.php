@@ -29,4 +29,19 @@ class CoursController extends AbstractController
         ]);	
         
     }
+
+    public function consulter(ManagerRegistry $doctrine, int $id){
+
+        $cours= $doctrine->getRepository(Cours::class)->find($id);
+
+        if (!$cours) {
+            throw $this->createNotFoundException(
+            'Aucun élève trouvé avec le numéro '.$id
+            );
+        }
+
+        //return new Response('Cours : '.$cours->getNom());
+        return $this->render('cours/consulter.html.twig', [
+            'cours' => $cours,]);
+    }
 }
