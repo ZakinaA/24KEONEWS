@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EleveRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EleveRepository::class)]
 class Eleve
@@ -14,9 +15,21 @@ class Eleve
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le nom doit comporter au minimum 2 caractères',
+        maxMessage: 'Le nom doit comporter au maximum 50 caractères',
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le prenom doit comporter au minimum 2 caractères',
+        maxMessage: 'Le prenom doit comporter au maximum 50 caractères',
+    )]
     private ?string $prenom = null;
 
     #[ORM\Column]
@@ -26,12 +39,24 @@ class Eleve
     private ?string $rue = null;
 
     #[ORM\Column]
+    #[Assert\Length(
+        min: 5,
+        max: 5,
+        minMessage: 'Le code postal doit comporter au minimum 5 caractères',
+        maxMessage: 'Le code postal doit comporter au maximum 5 caractères',
+    )]
     private ?int $copos = null;
 
     #[ORM\Column(length: 50)]
     private ?string $ville = null;
 
     #[ORM\Column]
+    #[Assert\Length(
+        min: 9,
+        max: 10,
+        minMessage: 'Le numero de telephone doit comporter au minimum 9 caractères',
+        maxMessage: 'Le numero de telephone doit comporter au maximum 10 caractères',
+    )]
     private ?int $tel = null;
 
     #[ORM\Column(length: 50)]

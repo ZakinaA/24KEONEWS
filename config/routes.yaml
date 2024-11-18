@@ -67,3 +67,7 @@ app_eleve_lister:
 app_eleve_consulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulter
+    
+app_eleve_ajouter:
+    path: /eleve/ajouter
+    controller: App\Controller\EleveController::ajouter
