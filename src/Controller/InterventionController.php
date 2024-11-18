@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Intervention;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\InterventionType;
 
 class InterventionController extends AbstractController
 {
@@ -40,5 +42,26 @@ class InterventionController extends AbstractController
         return $this->render('intervention/consulter.html.twig', [
             'intervention' => $intervention,
         ]);
+    }
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request){
+        $intervention = new intervention();
+	$form = $this->createForm(interventionType::class, $intervention);
+	$form->handleRequest($request);
+ 
+	if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $intervention = $form->getData();
+ 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($intervention);
+            $entityManager->flush();
+ 
+	    return $this->render('intervention/consulter.html.twig', ['intervention' => $intervention,]);
+	}
+	else
+        {
+            return $this->render('intervention/ajouter.html.twig', array('form' => $form->createView(),));
+	}
     }
 }
