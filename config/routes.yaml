@@ -99,3 +99,9 @@ app_eleve_modifier:
 app_eleve_supprimer:
     path: /eleve/supprimer/{id}
     controller: App\Controller\EleveController::supprimer
+
+#Responsable
+
+app_responsable:
+    path: /responsable
+    controller: App\Controller\ResponsableController::index
