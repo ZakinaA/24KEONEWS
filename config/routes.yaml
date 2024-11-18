@@ -50,6 +50,10 @@ app_intervention_consulter:
     path: /intervention/consulter/{id}
     controller: App\Controller\InterventionController::consulter
 
+app_intervention_ajouter:
+    path: /intervention/ajouter
+    controller: App\Controller\InterventionController::ajouter
+
 #Eleve
 
 app_eleve:
