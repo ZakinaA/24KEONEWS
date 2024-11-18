@@ -62,6 +62,10 @@ app_intervention_modifier:
     path: /intervention/modifier/{id}
     controller: App\Controller\InterventionController::modifier
 
+app_intervention_supprimer:
+    path: /intervention/supprimer/{id}
+    controller: App\Controller\InterventionController::supprimer
+
 #Eleve
 
 app_eleve:
