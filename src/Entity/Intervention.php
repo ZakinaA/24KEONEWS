@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\InterventionRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: InterventionRepository::class)]
 class Intervention
@@ -21,6 +22,12 @@ class Intervention
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\Column(length: 150)]
+    #[Assert\Length(
+        min: 2,
+        max: 150,
+        minMessage: 'Le descriptif doit comporter au minimum 2 caractères',
+        maxMessage: 'Le descriptif doit comporter au maximum 50 caractères',
+    )]
     private ?string $descriptif = null;
 
     #[ORM\Column]
