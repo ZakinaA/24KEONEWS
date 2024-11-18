@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation de Cours{% endblock %}
+
+{% block body %}
+    <h5>PAGE DE CONSULTATION D'UN COURS</h5>
+    <p>
+    <table>
+        <tr>
+            <td>Id : </td>
+            <td>{{ cours.id }} </td>
+        </tr>
+        <tr>
+            <td>Libelle : </td>
+            <td>{{ cours.libelle }}</td>
+        </tr>
+        <tr>
+            <td>Age Minimum : </td>
+            <td>{{ cours.ageMini }}</td>
+        </tr>
+        <tr>
+            <td>Heure de Debut : </td>
+            <td>{{ cours.heureDebut | date('H:i')}}</td>
+        </tr>
+        <tr>
+            <td>Heure de Fin : </td>
+            <td>{{ cours.heureFin | date('H:i')}}</td>
+        </tr>
+        
+    </table>
+</p>
+{% endblock %}
