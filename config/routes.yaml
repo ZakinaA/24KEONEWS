@@ -24,6 +24,10 @@ app_cours_consulter:
     path: /cours/consulter/{id}
     controller: App\Controller\CoursController::consulter
 
+app_cours_ajouter:
+    path: /cours/ajouter
+    controller: App\Controller\CoursController::ajouter
+
 # Intervention
 
 app_intervention:
