@@ -12,7 +12,7 @@
 		<table>
             {% for eleve in pEleves %}
             <tr>
-                <td>{{ eleve.nom }}</a></td>
+                <td><a href="{{ path('app_eleve_consulter', { 'id': eleve.id }) }}">{{ eleve.nom }}</a></td>
                 <td>{{ eleve.prenom }}</td>
                 <td>{{ eleve.numrue }}</td>
                 <td>{{ eleve.rue }}</td>

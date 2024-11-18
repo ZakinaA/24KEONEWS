@@ -38,3 +38,7 @@ app_eleve:
 app_eleve_lister:
     path: /eleve/lister
     controller: App\Controller\EleveController::lister
+    
+app_eleve_consulter:
+    path: /eleve/consulter/{id}
+    controller: App\Controller\EleveController::consulter

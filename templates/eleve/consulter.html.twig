@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>       
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		<h5>{{eleve.nom}} {{eleve.prenom}}</h5>
+		<table >
+     		<tr><td>ID : </td><td>{{eleve.id}} </td></tr>
+	    	<tr><td>Rue : </td><td>{{eleve.numrue}} {{eleve.rue}}</td></tr>
+		 	<tr><td>Code Postal : </td><td>{{eleve.copos}}</td></tr>
+		  	<tr><td>Ville : </td><td>{{eleve.ville}}</td></tr>
+	   		<tr><td>Téléphone : </td><td>{{eleve.tel}}</td></tr>
+       	   	<tr><td>E-Mail : </td><td>{{eleve.mail}}</td></tr>
+		</table>
+    </body>
+</html>
