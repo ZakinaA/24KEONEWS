@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %} 
+    </head>
+    <body>       
+		<h5>PAGE DE CONSULTATION D'UNE INTERVENTION</h5>
+        <p>
+        <table >
+            <tr>
+                <td>ID : </td><td>{{intervention.id}}</td>
+            </tr>
+            <tr>
+                <td>Descriptif : </td><td>{{intervention.descriptif}}</td>
+            </tr>
+                <td>Prix : </td><td>{{intervention.prix}}</td>
+            </tr>
+            <tr>
+                <td>Quotité : </td><td>{{intervention.quotite}}</td>
+            </tr>
+            <tr>
+                <td>Date de début : </td><td>{{intervention.datedebut|date("d/m/Y")}}</td>
+            </tr>
+            <tr>
+                <td>Date de fin : </td><td>{{intervention.datefin|date("d/m/Y")}}</td>
+            </tr>
+        </table>
+    </body>
+</html>
