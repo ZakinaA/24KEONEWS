@@ -28,9 +28,6 @@ class Instrument
     #[ORM\Column(length: 70)]
     private ?string $utilisation = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $cheminImage = null;
-
     #[ORM\Column(length: 70)]
     private ?string $couleur = null;
 
@@ -83,18 +80,6 @@ class Instrument
     public function setUtilisation(string $utilisation): static
     {
         $this->utilisation = $utilisation;
-
-        return $this;
-    }
-
-    public function getCheminImage(): ?string
-    {
-        return $this->cheminImage;
-    }
-
-    public function setCheminImage(string $cheminImage): static
-    {
-        $this->cheminImage = $cheminImage;
 
         return $this;
     }

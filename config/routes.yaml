@@ -14,6 +14,10 @@ app_lister_instrument:
     path: /instrument/lister
     controller: App\Controller\InstrumentController::lister
 
+app_consulter_instrument:
+    path: /instrument/consulter/{id}
+    controller: App\Controller\InstrumentController::consulter
+
 # Cours
 
 app_cours:
