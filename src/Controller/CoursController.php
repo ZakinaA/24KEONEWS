@@ -76,6 +76,7 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
 	if (!$cours) {
 	    throw $this->createNotFoundException('Aucun cours trouvé avec le numéro '.$id);
 	}
+
 	else
 	{
             $form = $this->createForm(CoursModifierType::class, $cours);
@@ -93,6 +94,21 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
                 return $this->render('cours/modifier.html.twig', array('form' => $form->createView(),));
            }
         }
+ }
+
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $cours = $doctrine->getRepository(Cours::class)->find($id);
+
+     if (!$cours) {
+         throw $this->createNotFoundException('Aucune cours trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($cours); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_cours_lister');
  }
 
 }

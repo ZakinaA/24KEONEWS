@@ -40,6 +40,10 @@ app_cours_modifier:
     path: /cours/modifier/{id}
     controller: App\Controller\CoursController::modifier
 
+app_cours_supprimer:
+    path: /cours/supprimer/{id}
+    controller: App\Controller\CoursController::supprimer
+
 # Intervention
 
 app_intervention:
