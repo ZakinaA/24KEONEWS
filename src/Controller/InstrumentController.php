@@ -27,4 +27,19 @@ class InstrumentController extends AbstractController
             'pInstrument' => $instrument,
         ]);	
     }
+
+    public function consulter(ManagerRegistry $doctrine, int $id)
+    {
+        $instrument = $doctrine->getRepository(Instrument::class)->find($id);
+
+        if (!$instrument) {
+            throw $this->createNotFoundException(
+                'Aucun étudiant trouvé avec le numéro '.$id
+            );
+        }
+        
+        return $this->render('instrument/consulter.html.twig', [
+            'instrument' => $instrument,
+        ]);
+    }
 }
