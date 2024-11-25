@@ -82,7 +82,7 @@ class EleveController extends AbstractController
                 ));
             }
             else {
-                return $this->render('eleve/ajouter.html.twig', array(
+                return $this->render('eleve/modifier.html.twig', array(
                     'form' => $form->createView(),
                 ));
             }
