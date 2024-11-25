@@ -89,4 +89,18 @@ class ResponsableController extends AbstractController {
         }
 	}
 
+    public function supprimer(ManagerRegistry $doctrine, int $id): Response {
+        $responsable = $doctrine->getRepository(Responsable::class)->find($id);
+
+        if (!$responsable) {
+            throw $this->createNotFoundException('Aucune responsable trouvé avec l\'ID '.$id);
+        }
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($responsable); 
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_responsable_lister');
+    }
+
 }
