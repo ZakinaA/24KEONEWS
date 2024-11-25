@@ -88,6 +88,10 @@ app_professionnel_lister:
     path: /professionnel/lister
     controller: App\Controller\ProfessionnelController::lister
 
+app_professionnel_consulter:
+    path: /professionnel/consulter/{id}
+    controller: App\Controller\ProfessionnelController::consulter
+
 #Eleve
 
 app_eleve:

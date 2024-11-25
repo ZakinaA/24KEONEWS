@@ -13,9 +13,9 @@
 		<table>
             {% for p in pProfessionnels %}
             <tr>
-                <td><a href="{{ path('app_professionnel_lister', { 'id': p.id }) }}">{{ p.id }}</a></td>
-                <td><a href="{{ path('app_professionnel_lister', { 'id': p.nom }) }}">{{ p.nom }}</a></td>
-                <td><a href="{{ path('app_professionnel_lister', { 'id': p.ville }) }}">{{ p.ville }}</a></td>
+                <td><a href="{{ path('app_professionnel_consulter', { 'id': p.id }) }}">{{ p.id }}</a></td>
+                <td><a href="{{ path('app_professionnel_consulter', { 'id': p.id }) }}">{{ p.nom }}</a></td>
+                <td><a href="{{ path('app_professionnel_consulter', { 'id': p.id }) }}">{{ p.ville }}</a></td>
             </tr>
             {% else %}
             <tr>
