@@ -17,9 +17,19 @@ class EleveModifierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->remove('ajouter')
-            ->add('nom', TextType::class, array('label' => 'Nom Élève', 'disabled'=> true))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier Élève'));
+            ->remove('enregistrer')
+            ->add('nom', TextType::class, [
+                'label' => 'Nom Élève', 
+                'disabled' => true,
+            ])
+            ->add('prenom', TextType::class, ['label' => 'Prénom Élève'])
+            ->add('numRue', IntegerType::class, ['label' => 'Numéro de Rue'])
+            ->add('rue', TextType::class, ['label' => 'Rue'])
+            ->add('copos', IntegerType::class, ['label' => 'Code Postal'])
+            ->add('ville', TextType::class, ['label' => 'Ville'])
+            ->add('tel', IntegerType::class, ['label' => 'Téléphone'])
+            ->add('mail', TextType::class, ['label' => 'Email'])
+            ->add('enregistrer', SubmitType::class, ['label' => 'Modifier Élève']);
     }
  
     public function getParent(){
