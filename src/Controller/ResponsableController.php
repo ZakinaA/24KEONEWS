@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Responsable;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\ResponsableType;
+use App\Form\ResponsableModifierType;
 
 class ResponsableController extends AbstractController {
     public function index(): Response {
@@ -58,5 +59,34 @@ class ResponsableController extends AbstractController {
             return $this->render('responsable/ajouter.html.twig', array('form' => $form->createView(),));
         }
     }
+
+    public function modifier(Request $request, ManagerRegistry $doctrine, $id)
+    {
+		$responsable= $doctrine->getRepository(Responsable::class)->find($id);
+
+		if (!$responsable) {
+            throw $this->createNotFoundException('Aucun étudiant trouvé avec le numéro '.$id);
+        }
+        else {
+            $form = $this->createForm(ResponsableModifierType::class, $responsable);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $responsable = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($responsable);
+                $entityManager->flush();
+
+                return $this->render('responsable/consulter.html.twig', array(
+                    'responsable' => $responsable,
+                ));
+            }
+            else {
+                return $this->render('responsable/ajouter.html.twig', array(
+                    'form' => $form->createView(),
+                ));
+            }
+        }
+	}
 
 }

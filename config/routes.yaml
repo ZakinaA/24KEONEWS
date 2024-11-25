@@ -135,3 +135,7 @@ app_responsable_consulter:
 app_responsable_ajouter:
     path: /responsable/ajouter
     controller: App\Controller\ResponsableController::ajouter
+
+app_responsable_modifier:
+    path: /responsable/modifier/{id}
+    controller: App\Controller\ResponsableController::modifier
