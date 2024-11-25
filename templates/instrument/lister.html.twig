@@ -13,7 +13,7 @@
 		<table>
 		{% for e in pInstrument %}
 		<tr>
-			<td><a href="{{ path('instrumentConsulter', { 'id': e.id }) }}">{{ e.nom }}</a></td>
+			<td><a href="{{ path('app_lister_instrument', { 'id': e.id }) }}">{{ e.numSerie }}</a></td>
 			<td>{{ e.numSerie }}</a></td>
 			<td>{{ e.dateAchat|date('d/m/Y') }}</td>
             <td>{{ e.prixAchat }}</a></td>

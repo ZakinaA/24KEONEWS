@@ -100,4 +100,19 @@ class InstrumentController extends AbstractController
             }
         }
 	}
+
+    public function supprimer(ManagerRegistry $doctrine, int $id): Response
+    {
+        $instrument = $doctrine->getRepository(Instrument::class)->find($id);
+   
+        if (!$instrument) {
+            throw $this->createNotFoundException('Aucune instrument trouvé avec l\'ID '.$id);
+        }
+   
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($instrument); 
+        $entityManager->flush();
+   
+        return $this->redirectToRoute('app_lister_instrument');
+    }
 }
