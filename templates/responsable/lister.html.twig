@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		LISTE DES RESPONSABLES</br>
+		<table>
+            {% for responsable in pResponsables %}
+            <tr>
+                <td>{{ responsable.nom }}</a></td>
+                <td>{{ responsable.prenom }}</td>
+                <td>{{ responsable.numrue }}</td>
+                <td>{{ responsable.rue }}</td>
+                <td>{{ responsable.copos }}</td>
+                <td>{{ responsable.ville }}</td>
+                <td>{{ responsable.tel }}</td>
+                <td>{{ responsable.mail}}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>Aucun responsable n'a été trouvé.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>

@@ -113,3 +113,7 @@ app_eleve_supprimer:
 app_responsable:
     path: /responsable
     controller: App\Controller\ResponsableController::index
+
+app_responsable_lister:
+    path: /responsable/lister
+    controller: App\Controller\ResponsableController::lister
