@@ -78,6 +78,12 @@ app_intervention_supprimer:
     path: /intervention/supprimer/{id}
     controller: App\Controller\InterventionController::supprimer
 
+# Professionnel 
+
+app_professionnel_lister:
+    path: /professionnel/lister
+    controller: App\Controller\ProfessionnelController::lister
+
 #Eleve
 
 app_eleve:
