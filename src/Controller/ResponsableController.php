@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Responsable;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\ResponsableType;
 
 class ResponsableController extends AbstractController {
     public function index(): Response {
@@ -35,6 +37,26 @@ class ResponsableController extends AbstractController {
         return $this->render('responsable/consulter.html.twig', [
             'responsable' => $responsable,
         ]);
+    }
+
+    public function ajouter(ManagerRegistry $doctrine, Request $request) {
+        $responsable = new responsable();
+	    $form = $this->createForm(ResponsableType::class, $responsable);
+	    $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $responsable = $form->getData();
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($responsable);
+            $entityManager->flush();
+
+            return $this->render('responsable/consulter.html.twig', ['responsable' => $responsable,]);
+        }
+        else {
+            return $this->render('responsable/ajouter.html.twig', array('form' => $form->createView(),));
+        }
     }
 
 }
