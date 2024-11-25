@@ -20,6 +20,8 @@
                 <td>{{ responsable.ville }}</td>
                 <td>{{ responsable.tel }}</td>
                 <td>{{ responsable.mail}}</td>
+                <td><a href="{{ path('app_responsable_modifier', { 'id': responsable.id }) }}">Modifier</a></td>
+                <td><a href="{{ path('app_responsable_supprimer', { 'id': responsable.id }) }}" onClick="return confirm('Supprimer ce responsable ?')">Supprimer</a></td>
             </tr>
             {% else %}
             <tr>
