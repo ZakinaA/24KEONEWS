@@ -139,3 +139,7 @@ app_responsable_ajouter:
 app_responsable_modifier:
     path: /responsable/modifier/{id}
     controller: App\Controller\ResponsableController::modifier
+
+app_responsable_supprimer:
+    path: /responsable/supprimer/{id}
+    controller: App\Controller\ResponsableController::supprimer
