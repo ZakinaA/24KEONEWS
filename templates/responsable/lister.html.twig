@@ -12,7 +12,7 @@
 		<table>
             {% for responsable in pResponsables %}
             <tr>
-                <td>{{ responsable.nom }}</a></td>
+                <td><a href="{{ path('app_responsable_consulter', { 'id': responsable.id }) }}">{{ responsable.nom }}</a></td>
                 <td>{{ responsable.prenom }}</td>
                 <td>{{ responsable.numrue }}</td>
                 <td>{{ responsable.rue }}</td>
