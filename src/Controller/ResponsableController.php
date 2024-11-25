@@ -23,4 +23,18 @@ class ResponsableController extends AbstractController {
         ]);	
     }
     
+    public function consulter(ManagerRegistry $doctrine, int $id){
+        $responsable= $doctrine->getRepository(Responsable::class)->find($id);
+
+        if (!$responsable) {
+            throw $this->createNotFoundException(
+            'Aucun responsable trouvé avec le numéro '.$id
+            );
+        }
+
+        return $this->render('responsable/consulter.html.twig', [
+            'responsable' => $responsable,
+        ]);
+    }
+
 }
