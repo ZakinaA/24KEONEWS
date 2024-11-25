@@ -29,14 +29,5 @@
             </tr>
             {% endfor %}
         </table>
-        <script>
-        function confirmDeletion(event) {
-            event.preventDefault();
-            var url = event.target.getAttribute('data-url');
-            if (confirm('Êtes-vous sûr de vouloir supprimer cet élève ?')) {
-                window.location.href = url;
-            }
-        }
-    </script>
     </body>
 </html>
