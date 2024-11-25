@@ -22,6 +22,7 @@ class CoursModifierType extends AbstractType
             ->add('ageMini')
             ->add('heureDebut')
             ->add('heureFin')
+            ->add('Jour')
             ->add('enregistrer', SubmitType::class, array('label' => 'Modifier cours'))
         ;
     }

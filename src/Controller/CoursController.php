@@ -39,15 +39,18 @@ class CoursController extends AbstractController
 
         if (!$cours) {
             throw $this->createNotFoundException(
-            'Aucun élève trouvé avec le numéro '.$id
+            'Aucun cours trouvé avec le numéro '.$id
             );
         }
 
-        //return new Response('Cours : '.$cours->getNom());
-        return $this->render('cours/consulter.html.twig', [
-            'cours' => $cours,]);
-    }
+            $jour = $cours->getJour(); 
 
+            return $this->render('cours/consulter.html.twig', [
+                'cours' => $cours,
+                'jour' => $jour, 
+            ]);
+        }
+    
     public function ajouter(ManagerRegistry $doctrine,Request $request){
         $cours = new cours();
 	$form = $this->createForm(CoursType::class, $cours);

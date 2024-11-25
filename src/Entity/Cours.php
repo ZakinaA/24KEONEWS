@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CoursRepository;
+use App\Repository\JourRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -26,6 +27,10 @@ class Cours
     #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heureFin = null;
 
+    #[ORM\ManyToOne(inversedBy: 'cours')]
+    private ?Jour $jour = null;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +80,18 @@ class Cours
     public function setHeureFin(?\DateTimeInterface $heureFin): static
     {
         $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    public function getJour(): ?Jour
+    {
+        return $this->jour;
+    }
+
+    public function setJour(?Jour $jour): static
+    {
+        $this->jour = $jour;
 
         return $this;
     }
