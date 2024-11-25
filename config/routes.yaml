@@ -92,6 +92,18 @@ app_professionnel_consulter:
     path: /professionnel/consulter/{id}
     controller: App\Controller\ProfessionnelController::consulter
 
+app_professionnel_ajouter:
+    path: /professionnel/ajouter
+    controller: App\Controller\ProfessionnelController::ajouter
+
+app_professionnel_modifier:
+    path: /professionnel/modifier/{id}
+    controller: App\Controller\ProfessionnelController::modifier
+
+app_professionnel_supprimer:
+    path: /professionnel/supprimer/{id}
+    controller: App\Controller\ProfessionnelController::supprimer
+
 #Eleve
 
 app_eleve:
