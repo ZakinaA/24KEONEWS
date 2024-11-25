@@ -117,3 +117,7 @@ app_responsable:
 app_responsable_lister:
     path: /responsable/lister
     controller: App\Controller\ResponsableController::lister
+    
+app_responsable_consulter:
+    path: /responsable/consulter/{id}
+    controller: App\Controller\ResponsableController::consulter
