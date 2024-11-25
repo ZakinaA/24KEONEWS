@@ -22,7 +22,7 @@ class CoursModifierType extends AbstractType
             ->add('ageMini')
             ->add('heureDebut')
             ->add('heureFin')
-            ->add('Jour')
+            ->add('jour', EntityType::class, array('class' => 'App\Entity\Jour', 'choice_label' => 'libelle'))
             ->add('enregistrer', SubmitType::class, array('label' => 'Modifier cours'))
         ;
     }
