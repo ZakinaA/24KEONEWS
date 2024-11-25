@@ -20,6 +20,8 @@
                 <td>{{ eleve.ville }}</td>
                 <td>{{ eleve.tel }}</td>
                 <td>{{ eleve.mail}}</td>
+                <td><a href="{{ path('app_eleve_modifier', { 'id': eleve.id }) }}">Modifier</a></td>
+                <td><a href="{{ path('app_eleve_supprimer', { 'id': eleve.id }) }}" onClick="return confirm('Supprimer cet élève ?')">Supprimer</a></td>
             </tr>
             {% else %}
             <tr>
