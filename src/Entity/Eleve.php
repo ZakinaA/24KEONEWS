@@ -71,6 +71,10 @@ class Eleve
     {
         $this->contratPrets = new ArrayCollection();
     }
+  
+    #[ORM\ManyToOne(inversedBy: 'eleves')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Responsable $responsable = null;
 
     public function getId(): ?int
     {
@@ -199,6 +203,15 @@ class Eleve
                 $contratPret->setEleve(null);
             }
         }
+      
+    public function getResponsable(): ?Responsable
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(?Responsable $responsable): static
+    {
+        $this->responsable = $responsable;
 
         return $this;
     }
