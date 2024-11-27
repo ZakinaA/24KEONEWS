@@ -211,6 +211,7 @@ class Eleve
                 $contratPret->setEleve(null);
             }
         }
+    }
       
     public function getResponsable(): ?Responsable
     {
