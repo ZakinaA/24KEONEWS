@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\InstrumentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
@@ -33,6 +35,14 @@ class Instrument
 
     #[ORM\ManyToOne(inversedBy: 'instruments')]
     private ?TypeInstrument $typeinstrument = null;
+
+    #[ORM\OneToMany(targetEntity: Accessoire::class, mappedBy: 'accessoire')]
+    private Collection $accessoires;
+
+    public function __construct()
+    {
+        $this->accessoires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -107,6 +117,36 @@ class Instrument
     public function setTypeinstrument(?TypeInstrument $typeinstrument): static
     {
         $this->typeinstrument = $typeinstrument;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Accessoire>
+     */
+    public function getAccessoires(): Collection
+    {
+        return $this->accessoires;
+    }
+
+    public function addAccessoire(Accessoire $accessoire): static
+    {
+        if (!$this->accessoires->contains($accessoire)) {
+            $this->accessoires->add($accessoire);
+            $accessoire->setAccessoire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccessoire(Accessoire $accessoire): static
+    {
+        if ($this->accessoires->removeElement($accessoire)) {
+            // set the owning side to null (unless already changed)
+            if ($accessoire->getAccessoire() === $this) {
+                $accessoire->setAccessoire(null);
+            }
+        }
 
         return $this;
     }
