@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Instrument;
+use App\Entity\TypeInstrument;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,6 +25,11 @@ class InstrumentFormType extends AbstractType
             ->add('prixAchat', IntegerType::class)
             ->add('utilisation', TextType::class)
             ->add('couleur', TextType::class)
+            ->add('typeinstrument', EntityType::class, [
+                'class' => TypeInstrument::class,
+                'choice_label' => 'libelle',
+                'placeholder' => 'Choisir un type',
+            ])
         ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel Instrument'))
             ;
     }
