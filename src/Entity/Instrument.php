@@ -39,6 +39,12 @@ class Instrument
     #[ORM\OneToMany(targetEntity: Accessoire::class, mappedBy: 'accessoire')]
     private Collection $accessoires;
 
+    #[ORM\ManyToOne(inversedBy: 'instruments')]
+    private ?Marque $marque = null;
+
+    #[ORM\ManyToOne(inversedBy: 'instruments')]
+    private ?Modele $modele = null;
+
     public function __construct()
     {
         $this->accessoires = new ArrayCollection();
@@ -147,6 +153,30 @@ class Instrument
                 $accessoire->setAccessoire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): static
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getModele(): ?Modele
+    {
+        return $this->modele;
+    }
+
+    public function setModele(?Modele $modele): static
+    {
+        $this->modele = $modele;
 
         return $this;
     }

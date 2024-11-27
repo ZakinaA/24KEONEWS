@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Instrument;
 use App\Entity\TypeInstrument;
 use App\Entity\Accessoire;
+use App\Entity\Marque;
+use App\Entity\Modele; 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -37,6 +39,16 @@ class InstrumentFormType extends AbstractType
                 'multiple' => true,  
                 'expanded' => true,
                 'placeholder' => 'Choisir des accessoires',
+            ])
+            ->add('marque', EntityType::class, [
+                'class' => Marque::class,
+                'choice_label' => 'libelle',
+                'placeholder' => 'Choisir une marque',
+            ])
+            ->add('modele', EntityType::class, [
+                'class' => Modele::class,
+                'choice_label' => 'libelle',
+                'placeholder' => 'Choisir un modèle',
             ])
         ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel Instrument'))
             ;

@@ -17,6 +17,8 @@
                     <th>Couleur</th>
                     <th>Type d'Instrument</th>
 					<th>Accessoire</th>
+					<th>Marque</th>
+                    <th>Modèle</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,16 +36,30 @@
 								Non défini
 							{% endif %}
 						</td>
-							<td>
-								{% if e.accessoires|length > 0 %}
-									{% for accessoire in e.accessoires %}
-										{{ accessoire.libelle }}
-										{% if not loop.last %}, {% endif %}  {# Sépare les accessoires par une virgule #}
-									{% endfor %}
-								{% else %}
-									Non défini
-								{% endif %}
-							</td>
+                        <td>
+                            {% if e.accessoires|length > 0 %}
+                                {% for accessoire in e.accessoires %}
+                                    {{ accessoire.libelle }}
+                                    {% if not loop.last %}, {% endif %} 
+                                {% endfor %}
+                            {% else %}
+                                Non défini
+                            {% endif %}
+                        </td>
+						<td>
+                            {% if e.marque is not null %}
+                                {{ e.marque.libelle }}
+                            {% else %}
+                                Non défini
+                            {% endif %}
+                        </td>
+						<td>
+							{% if e.modele is not null %}
+								{{ e.modele.libelle }}
+							{% else %}
+								Non défini
+							{% endif %}
+                        </td>
                     </tr>
                 {% else %}
                     <tr>
