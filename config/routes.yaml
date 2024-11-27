@@ -30,6 +30,16 @@ app_supprimer_instrument:
     path: /instrument/supprimer/{id}
     controller: App\Controller\InstrumentController::supprimer
 
+# Type_instrument
+
+Type_instrument:
+    path: /typeinstrument
+    controller: App\Controller\TypeInstrumentController::index
+
+Type_instrument_lister:
+    path: /typeinstrument/lister
+    controller: App\Controller\TypeInstrumentController::lister
+
 # Cours
 
 app_cours:

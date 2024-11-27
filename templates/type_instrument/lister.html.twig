@@ -9,16 +9,12 @@
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
 		
-		LISTE DES INSTRUMENTS</br>
+		LISTE DES TYPE DE INSTRUMENTS</br>
 		<table>
-		{% for e in pInstrument %}
+		{% for e in pTypeInstrument %}
 		<tr>
-			<td><a href="{{ path('app_lister_instrument', { 'id': e.id }) }}">{{ e.numSerie }}</a></td>
-			<td>{{ e.numSerie }}</a></td>
-			<td>{{ e.dateAchat|date('d/m/Y') }}</td>
-            <td>{{ e.prixAchat }}</a></td>
-            <td>{{ e.utilisation }}</a></td>
-			<td>{{ e.couleur}}</td>
+			<td><a href="{{ path('Type_instrument_lister', { 'id': e.id }) }}">{{ e.libelle }}</a></td>
+			<td>{{ e.libelle }}</a></td>
 	{% else %}
 		<tr>
 		<td>Aucun instrument n'a été trouvé.</td>

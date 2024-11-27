@@ -31,6 +31,9 @@ class Instrument
     #[ORM\Column(length: 70)]
     private ?string $couleur = null;
 
+    #[ORM\ManyToOne(inversedBy: 'instruments')]
+    private ?TypeInstrument $typeinstrument = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -92,6 +95,18 @@ class Instrument
     public function setCouleur(string $couleur): static
     {
         $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    public function getTypeinstrument(): ?TypeInstrument
+    {
+        return $this->typeinstrument;
+    }
+
+    public function setTypeinstrument(?TypeInstrument $typeinstrument): static
+    {
+        $this->typeinstrument = $typeinstrument;
 
         return $this;
     }
