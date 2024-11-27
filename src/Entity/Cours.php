@@ -117,7 +117,7 @@ class Cours
     public function addInscription(Inscription $inscription): static
     {
         if (!$this->inscriptions->contains($inscription)) {
-            $this->inscriptions->add($inscription);
+            $this->inscriptions->add($inscriptions);
             $inscription->setCours($this);
         }
 
