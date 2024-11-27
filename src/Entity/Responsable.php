@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ResponsableRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -61,6 +63,14 @@ class Responsable
 
     #[ORM\Column(length: 50)]
     private ?string $mail = null;
+
+    #[ORM\OneToMany(targetEntity: Eleve::class, mappedBy: 'responsable')]
+    private Collection $eleves;
+
+    public function __construct()
+    {
+        $this->eleves = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +169,36 @@ class Responsable
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Eleve>
+     */
+    public function getEleves(): Collection
+    {
+        return $this->eleves;
+    }
+
+    public function addElefe(Eleve $elefe): static
+    {
+        if (!$this->eleves->contains($elefe)) {
+            $this->eleves->add($elefe);
+            $elefe->setResponsable($this);
+        }
+
+        return $this;
+    }
+
+    public function removeElefe(Eleve $elefe): static
+    {
+        if ($this->eleves->removeElement($elefe)) {
+            // set the owning side to null (unless already changed)
+            if ($elefe->getResponsable() === $this) {
+                $elefe->setResponsable(null);
+            }
+        }
 
         return $this;
     }

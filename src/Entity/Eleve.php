@@ -62,6 +62,10 @@ class Eleve
     #[ORM\Column(length: 50)]
     private ?string $mail = null;
 
+    #[ORM\ManyToOne(inversedBy: 'eleves')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Responsable $responsable = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -159,6 +163,18 @@ class Eleve
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
+
+        return $this;
+    }
+
+    public function getResponsable(): ?Responsable
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(?Responsable $responsable): static
+    {
+        $this->responsable = $responsable;
 
         return $this;
     }
