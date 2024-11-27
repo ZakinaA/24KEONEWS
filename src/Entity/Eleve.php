@@ -70,6 +70,7 @@ class Eleve
     public function __construct()
     {
         $this->contratPrets = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
     }
   
     #[ORM\ManyToOne(inversedBy: 'eleves')]
@@ -78,11 +79,6 @@ class Eleve
 
     #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'eleve')]
     private Collection $inscriptions;
-
-    public function __construct()
-    {
-        $this->inscriptions = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
