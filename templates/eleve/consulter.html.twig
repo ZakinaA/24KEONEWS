@@ -34,5 +34,34 @@
                 </table>
             </td>
         </table>
+        <table>
+            <td>
+                <table style="border:1px solid black;">
+                    <h3>Cours de l'Élève</h3>
+                    <tr>
+                        <th>Libele</th>
+                        <th>Date Inscription</th>
+                        <th>Age Minimum</th>
+                        <th>Heure Debut</th>
+                        <th>Heure Fin</th>
+                        <th>Jour</th>
+                    </tr>
+                    {% for cours in cours %}
+                        <tr>
+                            <td>{{cours.id }}</td>
+                            <td>{{cours.libelle}}</td>
+                            <td>{{cours.ageMini }}</td>
+                            <td>{{cours.heureDebut | date('H:i')}}</td>
+                            <td>{{cours.heureFin | date('H:i')}}</td>
+                            <td>{{cours.jour.libelle }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Aucun cours inscrit.</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </table>
     </body>
 </html>
