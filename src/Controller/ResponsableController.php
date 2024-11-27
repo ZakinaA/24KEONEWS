@@ -82,7 +82,7 @@ class ResponsableController extends AbstractController {
                 ));
             }
             else {
-                return $this->render('responsable/ajouter.html.twig', array(
+                return $this->render('responsable/modifier.html.twig', array(
                     'form' => $form->createView(),
                 ));
             }
