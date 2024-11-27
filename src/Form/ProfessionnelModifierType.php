@@ -22,7 +22,7 @@ class ProfessionnelModifierType extends AbstractType
             ->add('ville', TextType::class)
             ->add('tel', NumberType::class)
             ->add('mail', TextType::class)
-            ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau professionnel'))
+            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier professionnel'))
         ;
     }
 
