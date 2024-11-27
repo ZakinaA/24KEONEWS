@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\InstrumentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\UX\Turbo\Attribute\Broadcast;
@@ -30,6 +32,17 @@ class Instrument
 
     #[ORM\Column(length: 70)]
     private ?string $couleur = null;
+
+    #[ORM\OneToMany(targetEntity: ContratPret::class, mappedBy: 'instrument')]
+    private Collection $contratPrets;
+
+    #[ORM\ManyToOne(inversedBy: 'instruments')]
+    private ?TypeInstrument $type_instrument = null;
+
+    public function __construct()
+    {
+        $this->contratPrets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -92,6 +105,48 @@ class Instrument
     public function setCouleur(string $couleur): static
     {
         $this->couleur = $couleur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContratPret>
+     */
+    public function getContratPrets(): Collection
+    {
+        return $this->contratPrets;
+    }
+
+    public function addContratPret(ContratPret $contratPret): static
+    {
+        if (!$this->contratPrets->contains($contratPret)) {
+            $this->contratPrets->add($contratPret);
+            $contratPret->setInstrument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContratPret(ContratPret $contratPret): static
+    {
+        if ($this->contratPrets->removeElement($contratPret)) {
+            // set the owning side to null (unless already changed)
+            if ($contratPret->getInstrument() === $this) {
+                $contratPret->setInstrument(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getTypeInstrument(): ?TypeInstrument
+    {
+        return $this->type_instrument;
+    }
+
+    public function setTypeInstrument(?TypeInstrument $type_instrument): static
+    {
+        $this->type_instrument = $type_instrument;
 
         return $this;
     }
