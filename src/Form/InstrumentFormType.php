@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Instrument;
 use App\Entity\TypeInstrument;
+use App\Entity\Accessoire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,6 +30,13 @@ class InstrumentFormType extends AbstractType
                 'class' => TypeInstrument::class,
                 'choice_label' => 'libelle',
                 'placeholder' => 'Choisir un type',
+            ])
+            ->add('accessoires', EntityType::class, [
+                'class' => Accessoire::class,
+                'choice_label' => 'libelle',
+                'multiple' => true,  
+                'expanded' => true,
+                'placeholder' => 'Choisir des accessoires',
             ])
         ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel Instrument'))
             ;

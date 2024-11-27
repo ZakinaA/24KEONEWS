@@ -44,6 +44,14 @@ class Instrument
         $this->contratPrets = new ArrayCollection();
     }
 
+    #[ORM\OneToMany(targetEntity: Accessoire::class, mappedBy: 'accessoire')]
+    private Collection $accessoires;
+
+    public function __construct()
+    {
+        $this->accessoires = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -147,6 +155,36 @@ class Instrument
     public function setTypeInstrument(?TypeInstrument $type_instrument): static
     {
         $this->type_instrument = $type_instrument;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Accessoire>
+     */
+    public function getAccessoires(): Collection
+    {
+        return $this->accessoires;
+    }
+
+    public function addAccessoire(Accessoire $accessoire): static
+    {
+        if (!$this->accessoires->contains($accessoire)) {
+            $this->accessoires->add($accessoire);
+            $accessoire->setAccessoire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccessoire(Accessoire $accessoire): static
+    {
+        if ($this->accessoires->removeElement($accessoire)) {
+            // set the owning side to null (unless already changed)
+            if ($accessoire->getAccessoire() === $this) {
+                $accessoire->setAccessoire(null);
+            }
+        }
 
         return $this;
     }
