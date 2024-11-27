@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Eleve;
+use App\Entity\Responsable;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +30,12 @@ class EleveModifierType extends AbstractType
             ->add('ville', TextType::class, ['label' => 'Ville'])
             ->add('tel', IntegerType::class, ['label' => 'Téléphone'])
             ->add('mail', TextType::class, ['label' => 'Email'])
+            ->add('responsable', EntityType::class, [
+                'class' => Responsable::class,
+                'choice_label' => 'nom',
+                'label' => 'Responsable',
+                'required' => true,
+            ])
             ->add('enregistrer', SubmitType::class, ['label' => 'Modifier Élève']);
     }
  
