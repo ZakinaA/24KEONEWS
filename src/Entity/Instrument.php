@@ -42,15 +42,11 @@ class Instrument
     public function __construct()
     {
         $this->contratPrets = new ArrayCollection();
+        $this->accessoires = new ArrayCollection();
     }
 
     #[ORM\OneToMany(targetEntity: Accessoire::class, mappedBy: 'accessoire')]
     private Collection $accessoires;
-
-    public function __construct()
-    {
-        $this->accessoires = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
