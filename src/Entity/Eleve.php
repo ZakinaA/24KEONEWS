@@ -71,6 +71,7 @@ class Eleve
     {
         $this->contratPrets = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
+        $this->inscription = new ArrayCollection();
     }
   
     #[ORM\ManyToOne(inversedBy: 'eleves')]
@@ -78,6 +79,8 @@ class Eleve
     private ?Responsable $responsable = null;
 
     #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'eleve')]
+    private Collection $inscription;
+  
     private Collection $inscriptions;
 
     public function getId(): ?int
@@ -222,6 +225,19 @@ class Eleve
     }
 
     /**
+     * @return Collection<int, self>
+     */
+    public function getInscription(): Collection
+    {
+        return $this->inscription;
+    }
+
+    public function addInscription(self $inscription): static
+    {
+        if (!$this->inscription->contains($inscription)) {
+            $this->inscription->add($inscription);
+            $inscription->setInstrument($this);
+
      * @return Collection<int, Inscription>
      */
     public function getInscriptions(): Collection
@@ -238,6 +254,13 @@ class Eleve
 
         return $this;
     }
+
+    public function removeInscription(self $inscription): static
+    {
+        if ($this->inscription->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getInstrument() === $this) {
+                $inscription->setInstrument(null);
 
     public function removeInscription(Inscription $inscription): static
     {

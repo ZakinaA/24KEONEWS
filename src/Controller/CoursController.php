@@ -43,11 +43,17 @@ class CoursController extends AbstractController
             );
         }
 
-            $jour = $cours->getJour(); 
+            $jour = $cours->getJour();
+            $eleve = [];
+            
+            foreach ($cours->getInscriptions() as $inscriptions) {
+                $eleve[] = $inscriptions->getEleve();
+            }
 
             return $this->render('cours/consulter.html.twig', [
                 'cours' => $cours,
-                'jour' => $jour, 
+                'jour' => $jour,
+                'eleve' => $eleve, 
             ]);
         }
     
