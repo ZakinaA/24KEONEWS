@@ -7,19 +7,25 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Libellé</th>
+                <th class="centered">Libellé</th>
+                <th class="centered">Age Minimum</th>
+                <th class="centered">Heure de Debut</th>
+                <th class="centered">Heure de Fin</th>
+                <th class="centered">Jour</th>
             </tr>
         </thead>
         <tbody>
             {% for c in pCours %}
                 <tr>
-                    <td>{{ c.id }}</td>
-                    <td>{{ c.libelle }}</td>
+                    <td><a href="{{ path('app_cours_consulter', { 'id': c.id }) }}">{{ c.libelle }}</a></td>
+                    <td class="centered">{{ c.ageMini }}</td>
+                    <td class="centered">{{ c.heureDebut | date('H:i')}}</td>
+                    <td class="centered">{{ c.heureFin | date('H:i')}}</td>
+                    <td class="centered">{{ c.jour.libelle }}</td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3">Aucun cours n'a été trouvée.</td>
+                    <td colspan="5">Aucun cours n'a été trouvée.</td>
                 </tr>
             {% endfor %}
         </tbody>
