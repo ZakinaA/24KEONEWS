@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EleveRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -61,6 +63,14 @@ class Eleve
 
     #[ORM\Column(length: 50)]
     private ?string $mail = null;
+
+    #[ORM\OneToMany(targetEntity: ContratPret::class, mappedBy: 'eleve')]
+    private Collection $contratPrets;
+
+    public function __construct()
+    {
+        $this->contratPrets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -159,6 +169,36 @@ class Eleve
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ContratPret>
+     */
+    public function getContratPrets(): Collection
+    {
+        return $this->contratPrets;
+    }
+
+    public function addContratPret(ContratPret $contratPret): static
+    {
+        if (!$this->contratPrets->contains($contratPret)) {
+            $this->contratPrets->add($contratPret);
+            $contratPret->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContratPret(ContratPret $contratPret): static
+    {
+        if ($this->contratPrets->removeElement($contratPret)) {
+            // set the owning side to null (unless already changed)
+            if ($contratPret->getEleve() === $this) {
+                $contratPret->setEleve(null);
+            }
+        }
 
         return $this;
     }
