@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}Liste des contrats prêts{% endblock %}
+    </title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+    <h1>Liste des contrats</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Début du contrat</th>
+                <th>Fin du contrat</th>
+                <th>Etat detaillé du début</th>
+                <th>Etat détaille du retour</th>
+                <th>Numéro de série de l'instrument</th>              
+                <th>Nom de l'instrument</th>
+                <th>Type d'instrument</th>
+                <th>Nom de l'élève</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cp in pContratsPrets %}
+                <tr>
+                    <td>{{ cp.id }}</td>
+                    <td>{{ cp.dateDebut|date("d/m/Y") }}</td>
+                    <td>{{ cp.dateFin|date("d/m/Y") }}</td>
+                    <td>{{ cp.etatDetailleDebut }}</td>
+                    <td>{{ cp.etatDetailleRetour }}</td>
+                    <td>{{ cp.instrument.numSerie}}</td>
+                    <td>{{ cp.instrument.utilisation}}</td>
+                    <td>{{ cp.instrument.typeInstrument.libelle}}</td>
+                    <td>{{ cp.eleve.nom }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" style="text-align:center;">Aucun contrat de prêt n'a été trouvé.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% block javascripts %}{% endblock %}
+</body>
+</html>
