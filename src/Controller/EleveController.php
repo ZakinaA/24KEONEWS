@@ -36,8 +36,11 @@ class EleveController extends AbstractController
             );
         }
 
+        $responsable=$eleve->getResponsable();
+
         return $this->render('eleve/consulter.html.twig', [
             'eleve' => $eleve,
+            'responsable' => $responsable,
         ]);
     }
 
@@ -54,7 +57,12 @@ class EleveController extends AbstractController
             $entityManager->persist($eleve);
             $entityManager->flush();
     
-            return $this->render('eleve/consulter.html.twig', ['eleve' => $eleve,]);
+            $responsable=$eleve->getResponsable();
+
+            return $this->render('eleve/consulter.html.twig', [
+                'eleve' => $eleve,
+                'responsable' => $responsable,
+            ]);
         }
         else {
             return $this->render('eleve/ajouter.html.twig', array('form' => $form->createView(),));
@@ -77,9 +85,12 @@ class EleveController extends AbstractController
                 $entityManager->persist($eleve);
                 $entityManager->flush();
             
-                return $this->render('eleve/consulter.html.twig', array(
+                $responsable=$eleve->getResponsable();
+
+                return $this->render('eleve/consulter.html.twig', [
                     'eleve' => $eleve,
-                ));
+                    'responsable' => $responsable,
+                ]);
             }
             else {
                 return $this->render('eleve/modifier.html.twig', array(
