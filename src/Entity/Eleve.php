@@ -64,17 +64,24 @@ class Eleve
     #[ORM\Column(length: 50)]
     private ?string $mail = null;
 
+    #[ORM\OneToMany(targetEntity: ContratPret::class, mappedBy: 'eleve')]
+    private Collection $contratPrets;
+
+    public function __construct()
+    {
+        $this->contratPrets = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
+        $this->inscription = new ArrayCollection();
+    }
+  
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Responsable $responsable = null;
 
     #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'eleve')]
     private Collection $inscription;
-
-    public function __construct()
-    {
-        $this->inscription = new ArrayCollection();
-    }
+  
+    private Collection $inscriptions;
 
     public function getId(): ?int
     {
@@ -177,6 +184,34 @@ class Eleve
         return $this;
     }
 
+    /**
+     * @return Collection<int, ContratPret>
+     */
+    public function getContratPrets(): Collection
+    {
+        return $this->contratPrets;
+    }
+
+    public function addContratPret(ContratPret $contratPret): static
+    {
+        if (!$this->contratPrets->contains($contratPret)) {
+            $this->contratPrets->add($contratPret);
+            $contratPret->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContratPret(ContratPret $contratPret): static
+    {
+        if ($this->contratPrets->removeElement($contratPret)) {
+            // set the owning side to null (unless already changed)
+            if ($contratPret->getEleve() === $this) {
+                $contratPret->setEleve(null);
+            }
+        }
+    }
+      
     public function getResponsable(): ?Responsable
     {
         return $this->responsable;
@@ -202,6 +237,19 @@ class Eleve
         if (!$this->inscription->contains($inscription)) {
             $this->inscription->add($inscription);
             $inscription->setInstrument($this);
+
+     * @return Collection<int, Inscription>
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): static
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions->add($inscription);
+            $inscription->setEleve($this);
         }
 
         return $this;
@@ -213,6 +261,13 @@ class Eleve
             // set the owning side to null (unless already changed)
             if ($inscription->getInstrument() === $this) {
                 $inscription->setInstrument(null);
+
+    public function removeInscription(Inscription $inscription): static
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getEleve() === $this) {
+                $inscription->setEleve(null);
             }
         }
 

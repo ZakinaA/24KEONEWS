@@ -23,6 +23,8 @@ class Inscription
     #[ORM\ManyToOne(inversedBy: 'inscription')]
     private ?Eleve $eleve = null;
 
+    #[ORM\ManyToOne(inversedBy: 'inscriptions')]
+    private ?Eleve $eleve = null;
 
     public function getId(): ?int
     {
