@@ -16,6 +16,12 @@
                 <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.id }}</a></td>
                 <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.descriptif }}</a></td>
                 <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.prix }}</a></td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.quotite }}</a></td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.dateDebut|date("d/m/Y") }}</a></td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.dateFin|date("d/m/Y") }}</a></td>
+                <td><a href="{{ path('app_intervention_consulter', { 'id': i.id }) }}">{{ i.professionnel.nom }}</a></td>       
+                <td><a href="{{ path('app_intervention_modifier', { id: i.id }) }}">Modifier</a></td>
+		        <td><a href="{{ path('app_intervention_supprimer', { id: i.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce professionnel ?')">Supprimer</a></td>         
             </tr>
             {% else %}
             <tr>
