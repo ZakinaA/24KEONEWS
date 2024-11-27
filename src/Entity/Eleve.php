@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EleveRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -62,6 +64,14 @@ class Eleve
     #[ORM\Column(length: 50)]
     private ?string $mail = null;
 
+    #[ORM\OneToMany(targetEntity: ContratPret::class, mappedBy: 'eleve')]
+    private Collection $contratPrets;
+
+    public function __construct()
+    {
+        $this->contratPrets = new ArrayCollection();
+    }
+  
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Responsable $responsable = null;
@@ -167,6 +177,33 @@ class Eleve
         return $this;
     }
 
+    /**
+     * @return Collection<int, ContratPret>
+     */
+    public function getContratPrets(): Collection
+    {
+        return $this->contratPrets;
+    }
+
+    public function addContratPret(ContratPret $contratPret): static
+    {
+        if (!$this->contratPrets->contains($contratPret)) {
+            $this->contratPrets->add($contratPret);
+            $contratPret->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContratPret(ContratPret $contratPret): static
+    {
+        if ($this->contratPrets->removeElement($contratPret)) {
+            // set the owning side to null (unless already changed)
+            if ($contratPret->getEleve() === $this) {
+                $contratPret->setEleve(null);
+            }
+        }
+      
     public function getResponsable(): ?Responsable
     {
         return $this->responsable;

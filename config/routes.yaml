@@ -92,6 +92,16 @@ app_intervention_supprimer:
     path: /intervention/supprimer/{id}
     controller: App\Controller\InterventionController::supprimer
 
+# Contrat Pret
+
+app_contratpret:
+    path: /contratpret
+    controller : App\Controller\ContratPretController::index
+
+app_contratpret_lister:
+    path: /contratpret/lister
+    controller: App\Controller\ContratPretController::lister
+
 # Professionnel 
 
 app_professionnel_lister:
