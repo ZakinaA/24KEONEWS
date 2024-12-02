@@ -40,6 +40,37 @@ Type_instrument_lister:
     path: /typeinstrument/lister
     controller: App\Controller\TypeInstrumentController::lister
 
+# app_accessoire
+
+app_Accessoire:
+    path: /accessoire
+    controller: App\Controller\AccessoireController::index
+
+app_Accessoire_lister:
+    path: /accessoire/lister
+    controller: App\Controller\AccessoireController::lister
+
+# app_Marque
+
+app_Marque:
+    path: /marque
+    controller: App\Controller\MarqueController::index
+
+app_Marque_lister:
+    path: /marque/lister
+    controller: App\Controller\MarqueController::lister
+
+# app_Modele
+
+app_Modele:
+    path: /modele
+    controller: App\Controller\ModeleController::index
+
+app_Modele_lister:
+    path: /modele/lister
+    controller: App\Controller\ModeleController::lister
+
+
 # Cours
 
 app_cours:
