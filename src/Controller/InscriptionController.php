@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Inscription;
+use App\Form\InscriptionType;
 use App\Entity\Cours;
 use App\Entity\Eleve;
 
@@ -52,5 +54,26 @@ class InscriptionController extends AbstractController
             'eleves' => $eleve,
         ]);
     }
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request){
+        $inscription = new inscription();
+	$form = $this->createForm(InscriptionType::class, $inscription);
+	$form->handleRequest($request);
+ 
+	if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $inscription = $form->getData();
+ 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($inscription);
+            $entityManager->flush();
+ 
+	    return $this->render('inscription/consulter.html.twig', ['inscription' => $inscription,]);
+	}
+	else
+        {
+            return $this->render('inscription/ajouter.html.twig', array('form' => $form->createView(),));
+	}
+}
     
 }
