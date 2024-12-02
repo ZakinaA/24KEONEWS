@@ -1,42 +1,200 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %} 
-    </head>
-    <body>       
-		<h5>PAGE DE CONSULTATION D'UN Instrument</h5>
-        <p>
-        <table >
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Consultation d'un Instrument{% endblock %}</title>
+    <style>
+        /* Général */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Partie gauche (menu) */
+        .menu {
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        .menu a:hover {
+            background-color: #575757;
+        }
+
+        /* Partie droite (contenu principal) */
+        .content {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .zoom {
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .zoom img {
+            transition: transform 0.3s ease;
+        }
+
+        .zoom:hover img {
+            transform: scale(1.1);
+        }
+
+        .no-data {
+            font-style: italic;
+            color: #888;
+        }
+
+        .accessory-list {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Menu à gauche -->
+    <div class="menu">
+        <h3>Navigation</h3>
+            <a href="{{ path('app_lister_instrument') }}">Liste des Instruments</a>
+            <a href="{{ path('Type_instrument_lister') }}">Types d'Instruments</a>
+            <a href="{{ path('app_Accessoire_lister') }}">Accessoires</a>
+            <a href="{{ path('app_Marque_lister') }}">Marques</a>
+            <a href="{{ path('app_Modele_lister') }}">Modèles</a>
+    </div>
+
+    <!-- Contenu principal à droite -->
+    <div class="content">
+        <h1>PAGE DE CONSULTATION D'UN INSTRUMENT</h1>
+
+        <table>
             <tr>
-                <td>ID : </td><td>{{instrument.id}}</td>
+                <td><strong>ID :</strong></td>
+                <td>{{ instrument.id }}</td>
+                <td rowspan="10">
+                    {% set photo = 'instrument/' ~ instrument.id ~ '.jpg' %}
+                    <span class="zoom">
+                        <img src="{{ asset(photo) }}" alt="Photo de {{ instrument.numSerie }}" title="{{ instrument.numSerie }}" width="200" height="200"/>
+                    </span>
+                </td>
             </tr>
             <tr>
-                <td>numSerie : </td><td>{{instrument.numSerie}}</td>
-                    <td  rowspan="8" >
-                        {% set photo = 'instrument/'~ instrument.id ~'.jpg' %}
-                        <span class="zoom"><img src="{{ asset(photo | trans )}}" title="{{ instrument.numSerie}}"/></span></td></tr> </td>
+                <td><strong>Numéro de Série :</strong></td>
+                <td>{{ instrument.numSerie }}</td>
+            </tr>
             <tr>
-            <tr>
-                <td>dateAchat : </td>
+                <td><strong>Date d'Achat :</strong></td>
                 <td>
                     {% if instrument.dateAchat is not null %}
                         {{ instrument.dateAchat|date("d/m/Y") }}
                     {% else %}
-                        Non spécifiée
+                        <span class="no-data">Non spécifiée</span>
                     {% endif %}
                 </td>
             </tr>
             <tr>
-                <td>prixAchat : </td><td>{{instrument.prixAchat}}</td>
+                <td><strong>Prix d'Achat :</strong></td>
+                <td>{{ instrument.prixAchat }} €</td>
             </tr>
             <tr>
-                <td>utilisation : </td><td>{{instrument.utilisation}}</td>
+                <td><strong>Utilisation :</strong></td>
+                <td>{{ instrument.utilisation }}</td>
             </tr>
             <tr>
-                <td>couleur : </td><td>{{instrument.couleur}}</td>
+                <td><strong>Couleur :</strong></td>
+                <td>{{ instrument.couleur }}</td>
+            </tr>
+            <tr>
+                <td><strong>Type d'Instrument :</strong></td>
+                <td>
+                    {% if instrument.typeinstrument is not null %}
+                        {{ instrument.typeinstrument.libelle }}
+                    {% else %}
+                        <span class="no-data">Non défini</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Marque :</strong></td>
+                <td>
+                    {% if instrument.marque is not null %}
+                        {{ instrument.marque.libelle }}
+                    {% else %}
+                        <span class="no-data">Non définie</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Modèle :</strong></td>
+                <td>
+                    {% if instrument.modele is not null %}
+                        {{ instrument.modele.libelle }}
+                    {% else %}
+                        <span class="no-data">Non défini</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td><strong>Accessoires :</strong></td>
+                <td class="accessory-list">
+                    {% if instrument.accessoires|length > 0 %}
+                        {% for accessoire in instrument.accessoires %}
+                            {{ accessoire.libelle }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <span class="no-data">Aucun accessoire</span>
+                    {% endif %}
+                </td>
             </tr>
         </table>
-    </body>
+    </div>
+
+</body>
 </html>

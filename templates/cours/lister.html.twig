@@ -22,6 +22,8 @@
                     <td class="centered">{{ c.heureDebut | date('H:i')}}</td>
                     <td class="centered">{{ c.heureFin | date('H:i')}}</td>
                     <td class="centered">{{ c.jour.libelle }}</td>
+                    <td><a href="{{ path('app_cours_modifier', { 'id': c.id }) }}">Modifier</a></td>
+                    <td><a href="{{ path('app_cours_supprimer', { 'id': c.id }) }}" onClick="return confirm('Supprimer ce cours ?')">Supprimer</a></td>
                 </tr>
             {% else %}
                 <tr>
