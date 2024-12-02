@@ -249,3 +249,25 @@ app_inscription_consulter:
 app_inscription_ajouter:
     path: /inscription/ajouter
     controller: App\Controller\InscriptionController::ajouter
+
+# Authentification
+
+app_auth:
+    path: /auth
+    controller: App\Controller\AuthController::index
+
+# Registration
+
+app_registration_register:
+    path: /registration/register
+    controller: App\Controller\RegistrationController::register
+
+# Security
+
+app_security_login:
+    path: /security/login
+    controller: App\Controller\SecurityController::login
+    
+app_security_logout:
+    path: /security/logout
+    controller: App\Controller\SecurityController::logout
