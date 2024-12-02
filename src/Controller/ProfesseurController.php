@@ -40,24 +40,4 @@ class ProfesseurController extends AbstractController
             'professeur' => $professeur,
         ]);
     }
-    public function ajouter(Request $request, ManagerRegistry $doctrine): Response
-    {
-        $professeur = new Professeur();
-        $form = $this->createForm(ProfesseurType::class, $professeur);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($professeur);
-            $entityManager->flush();
-
-            return $this->render('professeur/consulter.html.twig', [
-                'professeur' => $professeur,
-            ]);
-        }
-
-        return $this->render('professeur/ajouter.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
 }
