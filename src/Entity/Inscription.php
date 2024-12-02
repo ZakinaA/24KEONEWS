@@ -20,9 +20,6 @@ class Inscription
     #[ORM\ManyToOne(inversedBy: 'inscriptions')]
     private ?Cours $cours = null;
 
-    #[ORM\ManyToOne(inversedBy: 'inscription')]
-    private ?Eleve $eleve = null;
-
     #[ORM\ManyToOne(inversedBy: 'inscriptions')]
     private ?Eleve $eleve = null;
 
