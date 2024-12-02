@@ -33,29 +33,28 @@ class CoursController extends AbstractController
         
     }
 
-    public function consulter(ManagerRegistry $doctrine, int $id){
-
-        $cours= $doctrine->getRepository(Cours::class)->find($id);
-
-        if (!$cours) {
+    public function consulter(ManagerRegistry $doctrine, int $id): Response
+    {
+        $inscription = $doctrine->getRepository(Inscription::class)->find($id);
+        
+        if (!$inscription) {
             throw $this->createNotFoundException(
-            'Aucun cours trouvé avec le numéro '.$id
+                'Aucune inscription trouvée avec le numéro ' . $id
             );
         }
-
-            $jour = $cours->getJour();
-            $eleve = [];
-            
-            foreach ($cours->getInscriptions() as $inscriptions) {
-                $eleve[] = $inscriptions->getEleve();
-            }
-
-            return $this->render('cours/consulter.html.twig', [
-                'cours' => $cours,
-                'jour' => $jour,
-                'eleve' => $eleve, 
-            ]);
-        }
+    
+        $cours = $inscription->getCours(); 
+        $eleve = $inscription->getEleve(); 
+    
+        dump($inscription, $cours, $eleve); // Pour vérifier les données
+        
+        return $this->render('inscription/consulter.html.twig', [
+            'inscription' => $inscription,
+            'cours' => $cours,  
+            'eleves' => $eleve,
+        ]);
+    }
+    
     
     public function ajouter(ManagerRegistry $doctrine,Request $request){
         $cours = new cours();

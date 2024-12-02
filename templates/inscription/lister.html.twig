@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Inscription{% endblock %}
+
+{% block body %}
+    <h1>LISTE DES INSCRIPTIONS</h1>
+    <table>
+        <thead>
+            <tr>
+                <th class="centered">Date d'Inscription</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in pInscription %}
+                <tr>
+                    <td><a href="{{ path('app_inscription_consulter', { 'id': i.id }) }}">{{ i.dateInscription|date("d/m/Y H:i")}}</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Aucune inscription n'a été trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}

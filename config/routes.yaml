@@ -206,3 +206,17 @@ app_responsable_modifier:
 app_responsable_supprimer:
     path: /responsable/supprimer/{id}
     controller: App\Controller\ResponsableController::supprimer
+
+#Inscription
+
+app_inscription:
+    path: /inscription
+    controller: App\Controller\InscriptionController::index
+
+app_inscription_lister:
+    path: /inscription/lister
+    controller: App\Controller\InscriptionController::lister
+
+app_inscription_consulter:
+    path: /inscription/consulter/{id}
+    controller: App\Controller\InscriptionController::consulter
