@@ -250,4 +250,31 @@ class Eleve
 
         return $this;
     }
+
+    public function getInscription(): Collection
+    {
+        return $this->inscription;
+    }
+
+    public function addInscriptions(self $inscription): static
+    {
+        if (!$this->inscription->contains($inscription)) {
+            $this->inscription->add($inscription);
+            $inscription->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscriptions(self $inscription): static
+    {
+        if ($this->inscription->removeElement($inscription)) {
+            // set the owning side to null (unless already changed)
+            if ($inscription->getCours() === $this) {
+                $inscription->setCours(null);
+            }
+        }
+
+        return $this;
+    }
 }
