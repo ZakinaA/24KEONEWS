@@ -83,7 +83,7 @@
             <tbody>
                 {% for e in pInstrument %}
                     <tr>
-                        <td><a href="{{ path('app_lister_instrument', { 'id': e.id }) }}">{{ e.numSerie }}</a></td>
+                        <td><a href="{{ path('app_consulter_instrument', { 'id': e.id }) }}">{{ e.numSerie }}</a></td>
                         <td>{{ e.dateAchat|date('d/m/Y') }}</td>
                         <td>{{ e.prixAchat }} €</td>
                         <td>{{ e.utilisation }}</td>

@@ -12,7 +12,6 @@ use App\Form\InstrumentFormType;
 use App\Form\InstrumentModifierType;
 class ProfesseurController extends AbstractController
 {
-    #[Route('/professeur', name: 'app_professeur')]
     public function index(): Response
     {
         return $this->render('professeur/index.html.twig', [
@@ -26,5 +25,19 @@ class ProfesseurController extends AbstractController
         return $this->render('professeur/lister.html.twig', [
             'pProfesseur' => $professeur,
         ]);	
+    }
+    public function consulter(ManagerRegistry $doctrine, int $id)
+    {
+        $professeur = $doctrine->getRepository(Professeur::class)->find($id);
+
+        if (!$professeur) {
+            throw $this->createNotFoundException(
+                'Aucun étudiant trouvé avec le numéro '.$id
+            );
+        }
+        
+        return $this->render('professeur/consulter.html.twig', [
+            'professeur' => $professeur,
+        ]);
     }
 }
