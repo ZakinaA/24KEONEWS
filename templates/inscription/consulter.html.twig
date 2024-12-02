@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation d'Inscription{% endblock %}
+
+{% block body %}
+    <h5>PAGE DE CONSULTATION D'UNE INSCRIPTION</h5>
+    <p>
+    <table>
+        <tr>
+            <td>Date d'Inscription : </td>
+            <td>{{ inscription.dateInscription | date('d/m/Y')}}</td>
+        </tr>
+        <tr>
+
+        {% if cours is not empty %}
+                <tr><td>Cours : </td><td>{{cours.libelle}} </td></tr>
+                <tr><td>Age Mini : </td><td>{{ cours.ageMini }}</td></tr>
+                <tr><td>Heure Début : </td><td>{{ cours.heureDebut | date('H:i')}}</td></tr>
+                <tr><td>Heure de Fin : </td><td>{{ cours.heureFin | date('H:i')}}</td></tr>
+                <tr><td>Jour : </td><td>{{ cours.jour.libelle }}</td></tr>  
+        {% else %}
+            <tr><td colspan="2">Aucun cours trouvé.</td></tr>
+        {% endif %}
+
+        {% if eleves is not empty %}
+                <th>{{ eleves.nom }} {{ eleves.prenom }}</th>
+                <tr><td>ID : </td><td>{{ eleves.id }} </td></tr>
+                <tr><td>Rue : </td><td>{{ eleves.numrue }} {{ eleves.rue }}</td></tr>
+                <tr><td>Code Postal : </td><td>{{ eleves.copos }}</td></tr>
+                <tr><td>Ville : </td><td>{{ eleves.ville }}</td></tr>
+                <tr><td>Téléphone : </td><td>{{ eleves.tel }}</td></tr>
+                <tr><td>E-Mail : </td><td>{{ eleves.mail }}</td></tr>
+        {% else %}
+            <tr><td colspan="4">Aucun élève trouvé.</td></tr>
+        {% endif %}
+        
+    </table>
+</p>
+{% endblock %}
