@@ -70,6 +70,31 @@ app_Modele_lister:
     path: /modele/lister
     controller: App\Controller\ModeleController::lister
 
+# Professeur 
+
+app_professeur:
+    path: /professeur
+    controller: App\Controller\ProfesseurController::index
+
+app_lister_professeur:
+    path: /professeur/lister
+    controller: App\Controller\ProfesseurController::lister
+
+app_consulter_professeur:
+    path: /professeur/consulter/{id}
+    controller: App\Controller\ProfesseurController::consulter
+
+app_ajouter_professeur:
+    path: /professeur/ajouter
+    controller: App\Controller\ProfesseurController::ajouter
+
+app_modifier_professeur:
+    path: /professeur/modifier/{id}
+    controller: App\Controller\ProfesseurController::modifier
+
+app_supprimer_professeur:
+    path: /professeur/supprimer/{id}
+    controller: App\Controller\ProfesseurController::supprimer
 
 # Cours
 
