@@ -10,6 +10,8 @@ use App\Entity\Cours;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CoursType;
 use App\Form\CoursModifierType;
+use App\Entity\Inscription; 
+
 
 
 class CoursController extends AbstractController
