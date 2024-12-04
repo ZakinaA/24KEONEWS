@@ -268,6 +268,10 @@ app_quotient_familial_lister:
     path: /quotient_familial/lister
     controller: App\Controller\QuotientFamilialController::lister
 
+app_quotient_familial_consulter:
+    path: /quotient_familial/consulter/{id}
+    controller: App\Controller\QuotientFamilialController::consulter
+
 # Authentification
 
 app_auth:
