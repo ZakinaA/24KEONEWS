@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Modifier un Élève{% endblock %}
-
 {% block body %}
+    <a class="bouton-arriere" href="{{ path('app_eleve_lister') }}">Retourner en arrière</a>
     <h1>Modifier un Élève</h1>
 
     {{ form_start(form) }}
