@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %} 
-    </head>
-    <body>       
+{% extends 'base.html.twig' %}
+{% block title %}Liste des interventions{% endblock %}
+{% block body %}
+        <a class="bouton-arriere" href="{{ path('app_intervention_lister') }}">Retourner en arrière</a>
 		<h5>PAGE DE CONSULTATION D'UNE INTERVENTION</h5>
-        <p>
-        <table >
+        <table class="table-consulter">
             <tr>
                 <td>Descriptif : </td><td>{{intervention.descriptif}}</td>
             </tr>
@@ -27,5 +22,4 @@
                 <td>Professionnel : </td><td>{{intervention.professionnel.nom}}</td>
             </tr>
         </table>
-    </body>
-</html>
+{% endblock %}
