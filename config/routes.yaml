@@ -46,6 +46,62 @@ app_typeinstrument_lister:
     path: /typeinstrument/lister
     controller: App\Controller\TypeInstrumentController::lister
 
+# app_accessoire
+
+app_Accessoire:
+    path: /accessoire
+    controller: App\Controller\AccessoireController::index
+
+app_Accessoire_lister:
+    path: /accessoire/lister
+    controller: App\Controller\AccessoireController::lister
+
+# app_Marque
+
+app_Marque:
+    path: /marque
+    controller: App\Controller\MarqueController::index
+
+app_Marque_lister:
+    path: /marque/lister
+    controller: App\Controller\MarqueController::lister
+
+# app_Modele
+
+app_Modele:
+    path: /modele
+    controller: App\Controller\ModeleController::index
+
+app_Modele_lister:
+    path: /modele/lister
+    controller: App\Controller\ModeleController::lister
+
+# Professeur 
+
+app_professeur:
+    path: /professeur
+    controller: App\Controller\ProfesseurController::index
+
+app_lister_professeur:
+    path: /professeur/lister
+    controller: App\Controller\ProfesseurController::lister
+
+app_consulter_professeur:
+    path: /professeur/consulter/{id}
+    controller: App\Controller\ProfesseurController::consulter
+
+app_ajouter_professeur:
+    path: /professeur/ajouter
+    controller: App\Controller\ProfesseurController::ajouter
+
+app_modifier_professeur:
+    path: /professeur/modifier/{id}
+    controller: App\Controller\ProfesseurController::modifier
+
+app_supprimer_professeur:
+    path: /professeur/supprimer/{id}
+    controller: App\Controller\ProfesseurController::supprimer
+
 # Cours
 
 app_cours:
@@ -181,3 +237,65 @@ app_responsable_modifier:
 app_responsable_supprimer:
     path: /responsable/supprimer/{id}
     controller: App\Controller\ResponsableController::supprimer
+
+#Inscription
+
+app_inscription:
+    path: /inscription
+    controller: App\Controller\InscriptionController::index
+
+app_inscription_lister:
+    path: /inscription/lister
+    controller: App\Controller\InscriptionController::lister
+
+app_inscription_consulter:
+    path: /inscription/consulter/{id}
+    controller: App\Controller\InscriptionController::consulter
+
+app_inscription_ajouter:
+    path: /inscription/ajouter
+    controller: App\Controller\InscriptionController::ajouter
+
+app_inscription_modifier:
+    path: /inscription/modifier/{id}
+    controller: App\Controller\InscriptionController::modifier
+
+app_inscription_supprimer:
+    path: /inscription/supprimer/{id}
+    controller: App\Controller\InscriptionController::supprimer
+
+# QuotientFamilial
+
+app_quotient_familial_index:
+    path: /quotient_familial/index
+    controller: App\Controller\QuotientFamilialController::index
+
+app_quotient_familial_lister:
+    path: /quotient_familial/lister
+    controller: App\Controller\QuotientFamilialController::lister
+
+app_quotient_familial_consulter:
+    path: /quotient_familial/consulter/{id}
+    controller: App\Controller\QuotientFamilialController::consulter
+
+# Authentification
+
+app_auth:
+    path: /auth
+    controller: App\Controller\AuthController::index
+
+# Registration
+
+app_registration_register:
+    path: /registration/register
+    controller: App\Controller\RegistrationController::register
+
+# Security
+
+app_security_login:
+    path: /security/login
+    controller: App\Controller\SecurityController::login
+    
+app_security_logout:
+    path: /security/logout
+    controller: App\Controller\SecurityController::logout

@@ -16,6 +16,13 @@
 				<tr>
 					<td>{{ ti.id }}</td>
 					<td>{{ ti.libelle }}</td>
+          <td>
+          {% if e.classeinstrument is not null %}
+          {{ e.classeinstrument.libelle }}
+          {% else %}
+            Non défini
+          {% endif %}
+			    </td>
                     <td>
                         <a class="bouton-consulter" href="{{ path('app_typeinstrument_lister', { id: ti.id }) }}">Consulter</a>
                         <a class="bouton-modifier" href="{{ path('app_typeinstrument_lister', { id: ti.id }) }}">Modifier</a>

@@ -39,6 +39,12 @@ class Instrument
     #[ORM\ManyToOne(inversedBy: 'instruments')]
     private ?TypeInstrument $type_instrument = null;
 
+    #[ORM\ManyToOne(inversedBy: 'instruments')]
+    private ?Marque $marque = null;
+
+    #[ORM\ManyToOne(inversedBy: 'instruments')]
+    private ?Modele $modele = null;
+
     public function __construct()
     {
         $this->contratPrets = new ArrayCollection();
@@ -181,6 +187,30 @@ class Instrument
                 $accessoire->setAccessoire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): static
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
+    public function getModele(): ?Modele
+    {
+        return $this->modele;
+    }
+
+    public function setModele(?Modele $modele): static
+    {
+        $this->modele = $modele;
 
         return $this;
     }

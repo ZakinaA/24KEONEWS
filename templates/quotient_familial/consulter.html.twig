@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>       
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+		<table >
+     		<tr><td>ID : </td><td>{{quotient_familial.id}} </td></tr>
+	    	<tr><td>Libelle : </td><td>{{quotient_familial.libelle}}</td></tr>
+		 	<tr><td>Quotient Minimal : </td><td>{{quotient_familial.quotientMini}}</td></tr>
+		</table>
+    </body>
+</html>
