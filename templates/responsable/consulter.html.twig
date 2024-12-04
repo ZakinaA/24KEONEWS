@@ -17,5 +17,38 @@
 	   		<tr><td>Téléphone : </td><td>{{responsable.tel}}</td></tr>
        	   	<tr><td>E-Mail : </td><td>{{responsable.mail}}</td></tr>
 		</table>
+        <table>
+            <td>
+                <table style="border:1px solid black;">
+                    <h3>Élèves d'un responsable</h3>
+                    <tr>
+                        <td>ID : </td>
+                        <td>Nom : </td>
+                        <td>Prenom : </td>
+                        <td>Rue : </td></td>
+                        <td>Code Postal : </td>
+                        <td>Ville : </td>
+                        <td>Téléphone : </td>
+                        <td>E-Mail : </td>
+                    </tr>
+                    {% for eleve in responsable.eleves %}
+                        <tr>
+                            <td>{{eleve.id}} </td>
+                            <td>{{eleve.nom}} </td>
+                            <td>{{eleve.prenom}} </td>
+                            <td>{{eleve.numrue}} {{eleve.rue}}
+                            <td>{{eleve.copos}}</td>
+                            <td>{{eleve.ville}}</td>
+                            <td>{{eleve.tel}}</td>
+                            <td>{{eleve.mail}}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3">Aucun cours inscrit.</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </td>
+        </table>
     </body>
 </html>
