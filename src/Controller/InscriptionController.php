@@ -98,5 +98,20 @@ public function modifier(ManagerRegistry $doctrine, $id, Request $request){
            }
         }
  }
+
+ public function supprimer(ManagerRegistry $doctrine, int $id): Response
+ {
+     $inscription = $doctrine->getRepository(Inscription::class)->find($id);
+
+     if (!$inscription) {
+         throw $this->createNotFoundException('Aucune inscription trouvé avec l\'ID '.$id);
+     }
+
+     $entityManager = $doctrine->getManager();
+     $entityManager->remove($inscription); 
+     $entityManager->flush();
+
+     return $this->redirectToRoute('app_inscription_lister');
+ }
     
 }
