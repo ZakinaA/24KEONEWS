@@ -1,112 +1,18 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Consultation d'un Instrument{% endblock %}</title>
-    <style>
-        /* Général */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f9f9f9;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        /* Partie gauche (menu) */
-        .menu {
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
-        .menu a:hover {
-            background-color: #575757;
-        }
-
-        /* Partie droite (contenu principal) */
-        .content {
-            flex-grow: 1;
-            margin-left: 20px;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            background-color: #ffffff;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .zoom {
-            display: inline-block;
-            overflow: hidden;
-        }
-
-        .zoom img {
-            transition: transform 0.3s ease;
-        }
-
-        .zoom:hover img {
-            transform: scale(1.1);
-        }
-
-        .no-data {
-            font-style: italic;
-            color: #888;
-        }
-
-        .accessory-list {
-            margin-top: 5px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Menu à gauche -->
-    <div class="menu">
-        <h3>Navigation</h3>
-            <a href="{{ path('app_lister_instrument') }}">Liste des Instruments</a>
-            <a href="{{ path('Type_instrument_lister') }}">Types d'Instruments</a>
-            <a href="{{ path('app_Accessoire_lister') }}">Accessoires</a>
-            <a href="{{ path('app_Marque_lister') }}">Marques</a>
-            <a href="{{ path('app_Modele_lister') }}">Modèles</a>
+{% extends 'base.html.twig' %}
+{% block title %}Liste des instruments{% endblock %}
+{% block body %}     
+    <a class="bouton-arriere" href="{{ path('app_instrument_lister') }}">Retourner en arrière</a>
+		<h5>PAGE DE CONSULTATION D'UN INSTRUMENT</h5>
+        <p>
+        <table >
+            <tr>
+                <td>Numéro de série : </td><td>{{instrument.numSerie}}</td>
+                    <td  rowspan="8" >
+                        {% set photo = 'instrument/'~ instrument.id ~'.jpg' %}
+                        <span class="zoom"><img src="{{ asset(photo | trans )}}" title="{{ instrument.numSerie}}"/></span></td></tr> </td>
+            <tr>
+            <tr>
+            <td>Date d'achat : </td>
     </div>
 
     <!-- Contenu principal à droite -->
@@ -139,16 +45,13 @@
                 </td>
             </tr>
             <tr>
-                <td><strong>Prix d'Achat :</strong></td>
-                <td>{{ instrument.prixAchat }} €</td>
+                <td>Prix d'achat : </td><td>{{instrument.prixAchat}}</td>
             </tr>
             <tr>
-                <td><strong>Utilisation :</strong></td>
-                <td>{{ instrument.utilisation }}</td>
+                <td>Utilisation : </td><td>{{instrument.utilisation}}</td>
             </tr>
             <tr>
-                <td><strong>Couleur :</strong></td>
-                <td>{{ instrument.couleur }}</td>
+                <td>Couleur : </td><td>{{instrument.couleur}}</td>
             </tr>
             <tr>
                 <td><strong>Type d'Instrument :</strong></td>
@@ -160,8 +63,7 @@
                     {% endif %}
                 </td>
             </tr>
-            <tr>
-                <td><strong>Marque :</strong></td>
+        </table><td><strong>Marque :</strong></td>
                 <td>
                     {% if instrument.marque is not null %}
                         {{ instrument.marque.libelle }}
@@ -194,7 +96,4 @@
                 </td>
             </tr>
         </table>
-    </div>
-
-</body>
-</html>
+{% endblock %}

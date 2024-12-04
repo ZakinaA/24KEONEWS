@@ -1,33 +1,46 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-		LISTE DES RESPONSABLES</br>
-		<table>
-            {% for responsable in pResponsables %}
-            <tr>
-                <td><a href="{{ path('app_responsable_consulter', { 'id': responsable.id }) }}">{{ responsable.nom }}</a></td>
-                <td>{{ responsable.prenom }}</td>
-                <td>{{ responsable.numrue }}</td>
-                <td>{{ responsable.rue }}</td>
-                <td>{{ responsable.copos }}</td>
-                <td>{{ responsable.ville }}</td>
-                <td>{{ responsable.tel }}</td>
-                <td>{{ responsable.mail}}</td>
-                <td><a href="{{ path('app_responsable_modifier', { 'id': responsable.id }) }}">Modifier</a></td>
-                <td><a href="{{ path('app_responsable_supprimer', { 'id': responsable.id }) }}" onClick="return confirm('Supprimer ce responsable ?')">Supprimer</a></td>
-            </tr>
-            {% else %}
-            <tr>
-                <td>Aucun responsable n'a été trouvé.</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </body>
-</html>
+{% extends 'base.html.twig' %}
+{% block title %}Liste des professionnels{% endblock %}
+{% block body %}
+	<h1>Liste des responsables</h1>
+	<a class="bouton-ajouter" href="#">Ajouter un responsable</a>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nom</th>
+				<th>Prenom</th>
+				<th>Numéro de rue</th>
+				<th>Rue</th>
+				<th>Code postal</th>
+				<th>Ville</th>
+				<th>Numéro de téléphone</th>
+				<th>Mail</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for r in pResponsables %}
+				<tr>
+					<td>{{ r.id }}</td>
+					<td>{{ r.nom }}</td>
+					<td>{{ r.prenom }}</td>
+					<td>{{ r.numRue }}</td>
+					<td>{{ r.rue }}</td>
+					<td>{{ r.copos }}</td>
+					<td>{{ r.ville }}</td>
+					<td>{{ r.tel }}</td>
+					<td>{{ r.mail }}</td>
+                    <td>
+                        <a class="bouton-consulter" href="{{ path('app_responsable_consulter', { id: r.id }) }}">Consulter</a>
+                        <a class="bouton-modifier" href="{{ path('app_responsable_modifier', { id: r.id }) }}">Modifier</a>
+                        <a class="bouton-supprimer" href="{{ path('app_responsable_supprimer', { id: r.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette intervention?')">Supprimer</a>
+                    </td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="10" style="text-align:center;">Aucun contrat de prêt n'a été trouvé.</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

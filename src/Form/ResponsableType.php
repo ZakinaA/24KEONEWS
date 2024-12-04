@@ -17,16 +17,34 @@ class ResponsableType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class)
-            ->add('prenom', TextType::class)
-            ->add('numRue', IntegerType::class)
-            ->add('rue', TextType::class)
-            ->add('copos', IntegerType::class)
-            ->add('ville', TextType::class)
-            ->add('tel', IntegerType::class)
-            ->add('mail', TextType::class)
-            ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau Responsable'))
-        ;
+            ->add('nom', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Nom du responsable']
+            ])
+            ->add('prenom', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Prénom du responsable']
+            ])
+            ->add('numRue', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Numéro de rue']
+            ])
+            ->add('rue', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Rue']
+            ])
+            ->add('copos', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Code postal']
+            ])
+            ->add('ville', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Ville']
+            ])
+            ->add('tel', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Téléphone']
+            ])
+            ->add('mail', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Email']
+            ])
+            ->add('enregistrer', SubmitType::class, [
+                'label' => 'Nouveau Responsable',
+                'attr' => ['class' => 'btn btn-primary'] // Classe Bootstrap pour le bouton
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

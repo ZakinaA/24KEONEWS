@@ -15,30 +15,42 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class InstrumentFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('NumSerie', IntegerType::class)
+            ->add('NumSerie', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Numéro de série']
+            ])
             ->add('dateAchat', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
+                'attr' => ['class' => 'form-control']
             ])
-            ->add('prixAchat', IntegerType::class)
-            ->add('utilisation', TextType::class)
-            ->add('couleur', TextType::class)
+            ->add('prixAchat', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Prix d\'achat']
+            ])
+            ->add('utilisation', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Utilisation']
+            ])
+            ->add('couleur', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Couleur']
+            ])
             ->add('typeinstrument', EntityType::class, [
                 'class' => TypeInstrument::class,
                 'choice_label' => 'libelle',
                 'placeholder' => 'Choisir un type',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('accessoires', EntityType::class, [
                 'class' => Accessoire::class,
                 'choice_label' => 'libelle',
-                'multiple' => true,  
+                'multiple' => true,
                 'expanded' => true,
                 'placeholder' => 'Choisir des accessoires',
+                'attr' => ['class' => 'form-control']
             ])
             ->add('marque', EntityType::class, [
                 'class' => Marque::class,
@@ -50,8 +62,12 @@ class InstrumentFormType extends AbstractType
                 'choice_label' => 'libelle',
                 'placeholder' => 'Choisir un modèle',
             ])
-        ->add('enregistrer', SubmitType::class, array('label' => 'Nouvel Instrument'))
+            ->add('enregistrer', SubmitType::class, [
+                'label' => 'Nouvel Instrument',
+                'attr' => ['class' => 'btn btn-primary']
+            ])
             ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

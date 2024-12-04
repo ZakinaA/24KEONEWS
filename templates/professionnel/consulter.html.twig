@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %} 
-    </head>
-    <body>       
-        <a href="{{ path('app_professionnel_lister') }}">Retourer dans lister</a>
+{% extends 'base.html.twig' %}
+{% block title %}Liste des professionnels{% endblock %}
+{% block body %}
+        <a class="bouton-arriere" href="{{ path('app_professionnel_lister') }}">Retourner en arrière</a>
 		<h5>PAGE DE CONSULTATION D'UN PROFESSIONNEL</h5>
         <p>
-        <table >
+        <table class="table-consulter">
             <tr>
                 <td>Nom : </td><td>{{professionnel.nom}}</td>
             </tr>
@@ -31,5 +26,4 @@
                 <td>Mail : </td><td>{{professionnel.mail}}</td>
             </tr>
         </table>
-    </body>
-</html>
+{% endblock %}

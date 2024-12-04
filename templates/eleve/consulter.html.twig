@@ -1,52 +1,83 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>       
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <table>
-            <td>
-                <h3>Eleve</h3>
-                <table style="border:1px solid black;">
-                    <th>{{eleve.nom}} {{eleve.prenom}}</th>
-                    <tr><td>ID : </td><td>{{eleve.id}} </td></tr>
-                    <tr><td>Rue : </td><td>{{eleve.numrue}} {{eleve.rue}}</td></tr>
-                    <tr><td>Code Postal : </td><td>{{eleve.copos}}</td></tr>
-                    <tr><td>Ville : </td><td>{{eleve.ville}}</td></tr>
-                    <tr><td>Téléphone : </td><td>{{eleve.tel}}</td></tr>
-                    <tr><td>E-Mail : </td><td>{{eleve.mail}}</td></tr>
-                </table>
-            </td>
-            <td>
-                <h3>Responsable</h3>
-                <table style="border:1px solid black;">
-                    <th>{{eleve.responsable.nom}} {{eleve.responsable.prenom}}</th>
-                    <tr><td>ID : </td><td>{{eleve.responsable.id}} </td></tr>
-                    <tr><td>Rue : </td><td>{{eleve.responsable.numrue}} {{eleve.responsable.rue}}</td></tr>
-                    <tr><td>Code Postal : </td><td>{{eleve.responsable.copos}}</td></tr>
-                    <tr><td>Ville : </td><td>{{eleve.responsable.ville}}</td></tr>
-                    <tr><td>Téléphone : </td><td>{{eleve.responsable.tel}}</td></tr>
-                    <tr><td>E-Mail : </td><td>{{eleve.responsable.mail}}</td></tr>
-                </table>
-            </td>
-        </table>
-        <table>
-            <td>
-                <table style="border:1px solid black;">
-                    <h3>Cours de l'Élève</h3>
-                    <tr>
-                        <th>Libele</th>
-                        <th>Date Inscription</th>
-                        <th>Age Minimum</th>
-                        <th>Heure Debut</th>
-                        <th>Heure Fin</th>
-                        <th>Jour</th>
-                    </tr>
-                    {% for inscription in eleve.inscriptions %}
+{% extends 'base.html.twig' %}
+{% block title %}Consultation de Cours{% endblock %}
+{% block body %}
+    <a class="bouton-arriere" href="{{ path('app_eleve_lister') }}">Retourner en arrière</a>
+    <h2>PAGE DE CONSULTATION D'UN ÉLÈVE</h2>
+    <h3>Élève</h3>
+    <table class="table-consulter">
+        <thead>
+            <tr>
+                <th colspan="2">{{ eleve.nom }} {{ eleve.prenom }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rue :</td>
+                <td>{{ eleve.numrue }} {{ eleve.rue }}</td>
+            </tr>
+            <tr>
+                <td>Code Postal :</td>
+                <td>{{ eleve.copos }}</td>
+            </tr>
+            <tr>
+                <td>Ville :</td>
+                <td>{{ eleve.ville }}</td>
+            </tr>
+            <tr>
+                <td>Téléphone :</td>
+                <td>{{ eleve.tel }}</td>
+            </tr>
+            <tr>
+                <td>E-Mail :</td>
+                <td>{{ eleve.mail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Responsable</h3>
+    <table class="table-consulter">
+        <thead>
+            <tr>
+                <th colspan="2">{{ eleve.responsable.nom }} {{ eleve.responsable.prenom }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rue :</td>
+                <td>{{ eleve.responsable.numrue }} {{ eleve.responsable.rue }}</td>
+            </tr>
+            <tr>
+                <td>Code Postal :</td>
+                <td>{{ eleve.responsable.copos }}</td>
+            </tr>
+            <tr>
+                <td>Ville :</td>
+                <td>{{ eleve.responsable.ville }}</td>
+            </tr>
+            <tr>
+                <td>Téléphone :</td>
+                <td>{{ eleve.responsable.tel }}</td>
+            </tr>
+            <tr>
+                <td>E-Mail :</td>
+                <td>{{ eleve.responsable.mail }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Cours de l'Élève</h3>
+    <table class="table-consulter">
+        <thead>
+            <tr>
+                <th>Libelle</th>
+                <th>Age Minimum</th>
+                <th>Heure Début</th>
+                <th>Heure Fin</th>
+                <th>Jour</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inscription in eleve.inscriptions %}
                         <tr>
                             <td>{{inscription.cours.id }}</td>
                             <td>{{inscription.cours.libelle}}</td>
@@ -60,8 +91,6 @@
                             <td colspan="3">Aucun cours inscrit.</td>
                         </tr>
                     {% endfor %}
-                </table>
-            </td>
-        </table>
-    </body>
-</html>
+        </tbody>
+    </table>
+{% endblock %}

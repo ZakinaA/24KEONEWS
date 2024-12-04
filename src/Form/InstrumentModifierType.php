@@ -18,20 +18,35 @@ class InstrumentModifierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('NumSerie')
-            ->add('dateAchat')
-            ->add('prixAchat')
-            ->add('utilisation')
-            ->add('couleur')
-            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier Instrument'));
-        ;
+            ->add('NumSerie', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Numéro de série']
+            ])
+            ->add('dateAchat', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('prixAchat', IntegerType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Prix d\'achat']
+            ])
+            ->add('utilisation', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Utilisation']
+            ])
+            ->add('couleur', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Couleur']
+            ])
+            ->add('enregistrer', SubmitType::class, [
+                'label' => 'Modifier Instrument',
+                'attr' => ['class' => 'btn btn-primary']
+            ]);
     }
 
-    public function getParent(){
+    public function getParent()
+    {
         return InstrumentFormType::class;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Instrument::class,
