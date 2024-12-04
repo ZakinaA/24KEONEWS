@@ -156,6 +156,20 @@
                 <td><strong>Email :</strong></td>
                 <td>{{ professeur.mail }}</td>
             </tr>
+            <tr>
+                <td><strong>Types d'Instruments :</strong></td>
+                <td>
+                    {% if professeur.typeinstrument|length > 0 %}
+                        <ul>
+                            {% for typeInstrument in professeur.typeinstrument %}
+                                <li>{{ typeInstrument.libelle }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <span class="no-data">Aucun type d'instrument défini</span>
+                    {% endif %}
+                </td>
+            </tr>
         </table>
     </div>
 

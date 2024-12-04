@@ -15,6 +15,13 @@
 		<tr>
 			<td><a href="{{ path('Type_instrument_lister', { 'id': e.id }) }}">{{ e.libelle }}</a></td>
 			<td>{{ e.libelle }}</a></td>
+			<td>
+				{% if e.classeinstrument is not null %}
+				{{ e.classeinstrument.libelle }}
+				{% else %}
+					Non défini
+				{% endif %}
+			</td>
 	{% else %}
 		<tr>
 		<td>Aucun instrument n'a été trouvé.</td>

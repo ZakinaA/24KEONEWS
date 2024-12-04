@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfesseurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProfesseurRepository::class)]
@@ -36,6 +38,14 @@ class Professeur
 
     #[ORM\Column(length: 100)]
     private ?string $mail = null;
+
+    #[ORM\ManyToMany(targetEntity: TypeInstrument::class, inversedBy: 'professeurs')]
+    private Collection $typeinstrument;
+
+    public function __construct()
+    {
+        $this->typeinstrument = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,6 +144,30 @@ class Professeur
     public function setMail(string $mail): static
     {
         $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TypeInstrument>
+     */
+    public function getTypeinstrument(): Collection
+    {
+        return $this->typeinstrument;
+    }
+
+    public function addTypeinstrument(TypeInstrument $typeinstrument): static
+    {
+        if (!$this->typeinstrument->contains($typeinstrument)) {
+            $this->typeinstrument->add($typeinstrument);
+        }
+
+        return $this;
+    }
+
+    public function removeTypeinstrument(TypeInstrument $typeinstrument): static
+    {
+        $this->typeinstrument->removeElement($typeinstrument);
 
         return $this;
     }
