@@ -24,5 +24,19 @@ class QuotientFamilialController extends AbstractController
             'pQuotient_familiaux' => $quotient_familiaux,
         ]);	
     }
+
+    public function consulter(ManagerRegistry $doctrine, int $id) {
+        $quotient_familial= $doctrine->getRepository(QuotientFamilial::class)->find($id);
+
+        if (!$quotient_familial) {
+            throw $this->createNotFoundException(
+            'Aucun quotient familial trouvé avec le numéro '.$id
+            );
+        }
+
+        return $this->render('quotient_familial/consulter.html.twig', [
+            'quotient_familial' => $quotient_familial,
+        ]);
+    }
     
 }
