@@ -18,19 +18,35 @@ class InterventionModifierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateDebut', DateType::class, ['widget' => 'single_text','format' => 'yyyy-MM-dd',])
-            ->add('dateFin', DateType::class, ['widget' => 'single_text','format' => 'yyyy-MM-dd',])
-            ->add('descriptif', TextType::class)
-            ->add('prix', NumberType::class)
-            ->add('quotite', NumberType::class)
-            ->add('enregistrer', SubmitType::class, array('label' => 'Modifier intervention'))
-        ;
+            ->add('dateDebut', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('dateFin', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('descriptif', TextType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Description de l\'intervention']
+            ])
+            ->add('prix', NumberType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Prix de l\'intervention']
+            ])
+            ->add('quotite', NumberType::class, [
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Quotité']
+            ])
+            ->add('enregistrer', SubmitType::class, [
+                'label' => 'Modifier intervention',
+                'attr' => ['class' => 'btn btn-primary']
+            ]);
     }
 
-    public function getParent(){
+    public function getParent()
+    {
         return InterventionType::class;
-      }
-   
+    }
 
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -8,23 +8,43 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class CoursType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle')
-            ->add('ageMini')
-            ->add('heureDebut')
-            ->add('heureFin')
-            ->add('jour', EntityType::class, array('class' => 'App\Entity\Jour', 'choice_label' => 'libelle'))
-            ->add('enregistrer', SubmitType::class, array('label' => 'Nouveau cours'))
-            
-        ;
+            ->add('libelle', TextType::class, [
+                'label' => 'Libellé du cours',
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Nom du cours']
+            ])
+            ->add('ageMini', IntegerType::class, [
+                'label' => 'Âge minimum',
+                'attr' => ['class' => 'form-control', 'placeholder' => 'Âge minimum requis']
+            ])
+            ->add('heureDebut', TimeType::class, [
+                'label' => 'Heure de début',
+                'widget' => 'single_text',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('heureFin', TimeType::class, [
+                'label' => 'Heure de fin',
+                'widget' => 'single_text',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('jour', EntityType::class, [
+                'class' => 'App\Entity\Jour',
+                'choice_label' => 'libelle',
+                'label' => 'Jour',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('enregistrer', SubmitType::class, [
+                'label' => 'Nouveau cours',
+                'attr' => ['class' => 'btn btn-success']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
