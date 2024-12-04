@@ -11,6 +11,8 @@ use App\Entity\Inscription;
 use App\Form\InscriptionType;
 use App\Entity\Cours;
 use App\Entity\Eleve;
+use App\Form\InscriptionModifierType;
+
 
 
 class InscriptionController extends AbstractController
@@ -69,5 +71,32 @@ class InscriptionController extends AbstractController
             return $this->render('inscription/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
+
+public function modifier(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    $inscription = $doctrine->getRepository(Inscription::class)->find($id);
+ 
+	if (!$inscription) {
+	    throw $this->createNotFoundException('Aucune inscription trouvé avec le numéro '.$id);
+	}
+
+	else
+	{
+            $form = $this->createForm(InscriptionModifierType::class, $inscription);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $inscription = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($inscription);
+                 $entityManager->flush();
+                 return $this->render('inscription/consulter.html.twig', ['inscription' => $inscription,]);
+           }
+           else{
+                return $this->render('inscription/modifier.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
     
 }
