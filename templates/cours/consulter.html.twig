@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Consultation de Cours{% endblock %}
-
 {% block body %}
-    <h5>PAGE DE CONSULTATION D'UN COURS</h5>
+    <a class="bouton-arriere" href="{{ path('app_cours_lister') }}">Retourner en arrière</a>
+    <h2>PAGE DE CONSULTATION D'UN COURS</h2>
     <p>
-    <table>
+    <table class="table-consulter">
         <tr>
             <td>Libelle : </td>
             <td>{{ cours.libelle }}</td>
