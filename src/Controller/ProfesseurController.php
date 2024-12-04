@@ -40,4 +40,70 @@ class ProfesseurController extends AbstractController
             'professeur' => $professeur,
         ]);
     }
+    public function ajouter(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $professeur = new Professeur();
+        $form = $this->createForm(ProfesseurType::class, $professeur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($professeur);
+            $entityManager->flush();
+
+            return $this->render('professeur/consulter.html.twig', [
+                'professeur' => $professeur,
+            ]);
+        }
+
+        return $this->render('professeur/ajouter.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    public function modifier(Request $request, ManagerRegistry $doctrine, $id)
+    {
+		$professeur= $doctrine->getRepository(Professeur::class)->find($id);
+ 
+		if (!$professeur)
+        {
+            throw $this->createNotFoundException('Aucun professeur trouvé avec le numéro '.$id);
+        }
+        else
+        {
+            $form = $this->createForm(ProfesseurModifierType::class, $professeur);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid())
+            {
+                $professeur = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($professeur);
+                $entityManager->flush();
+            
+                return $this->render('professeur/consulter.html.twig', array(
+                    'professeur' => $professeur,
+                ));
+            }
+            else
+            {
+                return $this->render('professeur/ajouter.html.twig', array(
+                    'form' => $form->createView(),
+                ));
+            }
+        }
+	}
+    public function supprimer(ManagerRegistry $doctrine, int $id): Response
+    {
+        $professeur = $doctrine->getRepository(Professeur::class)->find($id);
+   
+        if (!$professeur) {
+            throw $this->createNotFoundException('Aucune professeur trouvé avec l\'ID '.$id);
+        }
+   
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($professeur); 
+        $entityManager->flush();
+   
+        return $this->redirectToRoute('app_lister_professeur');
+    }
 }
