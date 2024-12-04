@@ -22,6 +22,18 @@
 					Non défini
 				{% endif %}
 			</td>
+			<td>
+                    <strong>Professeurs :</strong>
+                    {% if e.professeurs|length > 0 %}
+                    <ul>
+                    {% for professeur in e.professeurs %}
+                    <li>{{ professeur.nom }} {{ professeur.prenom }}</li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                    Aucun professeur associé
+                {% endif %}
+            </td>
 	{% else %}
 		<tr>
 		<td>Aucun instrument n'a été trouvé.</td>
