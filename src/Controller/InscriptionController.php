@@ -43,15 +43,9 @@ class InscriptionController extends AbstractController
                 'Aucune inscription trouvée avec le numéro ' . $id
             );
         }
-
-        $cours = $inscription->getCours(); 
-    
-        $eleve = $inscription->getEleve(); 
     
         return $this->render('inscription/consulter.html.twig', [
             'inscription' => $inscription,
-            'cours' => $cours,  
-            'eleves' => $eleve,
         ]);
     }
 

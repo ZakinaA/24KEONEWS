@@ -59,7 +59,7 @@ class CoursController extends AbstractController
     
     
     public function ajouter(ManagerRegistry $doctrine,Request $request){
-        $cours = new cours();
+        $cours = new Cours();
 	$form = $this->createForm(CoursType::class, $cours);
 	$form->handleRequest($request);
  
@@ -70,12 +70,15 @@ class CoursController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($cours);
             $entityManager->flush();
+            
+   
  
 	    return $this->render('cours/consulter.html.twig', ['cours' => $cours,]);
 	}
 	else
         {
-            return $this->render('cours/ajouter.html.twig', array('form' => $form->createView(),));
+           
+           return $this->render('cours/ajouter.html.twig', array('form' => $form->createView(),));
 	}
 }
 
