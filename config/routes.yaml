@@ -4,39 +4,45 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+# Index
+
+app_index:
+    path: /
+    controller : App\Controller\IndexController::index
+
 # Instrument
 
 app_Instrument:
     path: /instrument
     controller: App\Controller\InstrumentController::index
 
-app_lister_instrument:
+app_instrument_lister:
     path: /instrument/lister
     controller: App\Controller\InstrumentController::lister
 
-app_consulter_instrument:
+app_instrument_consulter:
     path: /instrument/consulter/{id}
     controller: App\Controller\InstrumentController::consulter
 
-app_ajouter_instrument:
+app_instrument_ajouter:
     path: /instrument/ajouter
     controller: App\Controller\InstrumentController::ajouter
 
-app_modifier_instrument:
+app_instrument_modifier:
     path: /instrument/modifier/{id}
     controller: App\Controller\InstrumentController::modifier
 
-app_supprimer_instrument:
+app_instrument_supprimer:
     path: /instrument/supprimer/{id}
     controller: App\Controller\InstrumentController::supprimer
 
 # Type_instrument
 
-Type_instrument:
+app_typeinstrument:
     path: /typeinstrument
     controller: App\Controller\TypeInstrumentController::index
 
-Type_instrument_lister:
+app_typeinstrument_lister:
     path: /typeinstrument/lister
     controller: App\Controller\TypeInstrumentController::lister
 
