@@ -250,6 +250,10 @@ app_inscription_ajouter:
     path: /inscription/ajouter
     controller: App\Controller\InscriptionController::ajouter
 
+app_inscription_modifier:
+    path: /inscription/modifier/{id}
+    controller: App\Controller\InscriptionController::modifier
+
 # Authentification
 
 app_auth:
