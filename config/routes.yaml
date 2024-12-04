@@ -257,6 +257,10 @@ app_quotient_familial_index:
     path: /quotient_familial/index
     controller: App\Controller\QuotientFamilialController::index
 
+app_quotient_familial_lister:
+    path: /quotient_familial/lister
+    controller: App\Controller\QuotientFamilialController::lister
+
 # Authentification
 
 app_auth:
