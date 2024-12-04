@@ -250,6 +250,13 @@ app_inscription_ajouter:
     path: /inscription/ajouter
     controller: App\Controller\InscriptionController::ajouter
 
+
+# QuotientFamilial
+
+app_quotient_familial_index:
+    path: /quotient_familial/index
+    controller: App\Controller\QuotientFamilialController::index
+
 # Authentification
 
 app_auth:
