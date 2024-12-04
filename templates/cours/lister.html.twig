@@ -1,35 +1,41 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Liste des Cours{% endblock %}
-
+{% block title %}Liste des cours{% endblock %}
 {% block body %}
-    <h1>LISTE DES COURS</h1>
+    <a class="bouton-arriere" href="{{ path('app_cours_lister') }}">Retourner en arrière</a>
+    <h1>Liste des cours</h1>
+    <a class="bouton-ajouter" href="{{ path('app_cours_ajouter') }}">Ajouter un cours</a>
     <table>
         <thead>
             <tr>
-                <th class="centered">Libellé</th>
-                <th class="centered">Age Minimum</th>
-                <th class="centered">Heure de Debut</th>
-                <th class="centered">Heure de Fin</th>
-                <th class="centered">Jour</th>
+                <th>Libellé</th>
+                <th>Âge Minimum</th>
+                <th>Heure de Début</th>
+                <th>Heure de Fin</th>
+                <th>Jour</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for c in pCours %}
                 <tr>
-                    <td><a href="{{ path('app_cours_consulter', { 'id': c.id }) }}">{{ c.libelle }}</a></td>
-                    <td class="centered">{{ c.ageMini }}</td>
-                    <td class="centered">{{ c.heureDebut | date('H:i')}}</td>
-                    <td class="centered">{{ c.heureFin | date('H:i')}}</td>
-                    <td class="centered">{{ c.jour.libelle }}</td>
+                    <td>{{ c.libelle }}</td>
+                    <td>{{ c.ageMini }}</td>
+                    <td>{{ c.heureDebut | date('H:i') }}</td>
+                    <td>{{ c.heureFin | date('H:i') }}</td>
+                    <td>{{ c.jour.libelle }}</td>
+                    <td>
+                        <a class="bouton-consulter" href="{{ path('app_cours_consulter', { id: c.id }) }}">Consulter</a>
+                        <a class="bouton-modifier" href="{{ path('app_cours_modifier', { id: c.id }) }}">Modifier</a>
+                        <a class="bouton-supprimer" href="{{ path('app_cours_supprimer', { id: c.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce professionnel ?')">Supprimer</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">Aucun cours n'a été trouvée.</td>
+                    <td colspan="6" style="text-align: center;">
+                        Aucun cours n'a été trouvé.
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 {% endblock %}
-
-{% block javascripts %}{% endblock %}
