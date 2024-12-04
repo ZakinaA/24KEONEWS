@@ -36,17 +36,8 @@ class EleveController extends AbstractController
             );
         }
 
-        $responsable=$eleve->getResponsable();
-
-        $cours = [];
-        foreach ($eleve->getInscriptions() as $inscription) {
-            $cours[] = $inscription->getCours();
-        }
-
         return $this->render('eleve/consulter.html.twig', [
             'eleve' => $eleve,
-            'responsable' => $responsable,
-            'cours' => $cours,
         ]);
     }
 
