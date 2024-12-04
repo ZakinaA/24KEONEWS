@@ -12,7 +12,7 @@
 		<table>
             {% for quotient_familial in pQuotient_familiaux %}
             <tr>
-                <td>{{ quotient_familial.libelle }}</a></td>
+                <td><a href="{{ path('app_quotient_familial_consulter', { 'id': quotient_familial.id }) }}">{{ quotient_familial.libelle }}</a></td>
                 <td>{{ quotient_familial.quotientMini }}</td>
             </tr>
             {% else %}
