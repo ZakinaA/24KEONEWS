@@ -278,6 +278,10 @@ app_quotient_familial_consulter:
     path: /quotient_familial/consulter/{id}
     controller: App\Controller\QuotientFamilialController::consulter
 
+app_quotient_familial_ajouter:
+    path: /quotient_familial/ajouter
+    controller: App\Controller\QuotientFamilialController::ajouter
+
 # Authentification
 
 app_auth:
