@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des professionnels
+{% block title %}Liste des contrats
 {% endblock %}
 {% block body %}
 	<h1>Liste des contrats</h1>
@@ -7,7 +7,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
 				<th>Début du contrat</th>
 				<th>Fin du contrat</th>
 				<th>Numéro de série de l'instrument</th>
@@ -20,7 +19,6 @@
 		<tbody>
 			{% for cp in pContratsPrets %}
 				<tr>
-					<td>{{ cp.id }}</td>
 					<td>{{ cp.dateDebut|date("d/m/Y") }}</td>
 					<td>{{ cp.dateFin|date("d/m/Y") }}</td>
 					<td>{{ cp.instrument.numSerie}}</td>

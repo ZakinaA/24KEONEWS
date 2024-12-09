@@ -7,7 +7,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
 				<th>Numéro de Série</th>
 				<th>Date d'Achat</th>
 				<th>Prix d'Achat</th>
@@ -21,7 +20,6 @@
 		<tbody>
 			{% for i in pInstrument %}
 				<tr>
-					<td>{{ i.id }}</td>
 					<td>{{ i.numSerie }}</td>
 					<td>{{ i.dateAchat|date('d/m/Y') }}</td>
 					<td>{{ i.prixAchat }}

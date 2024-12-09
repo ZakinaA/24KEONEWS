@@ -37,23 +37,16 @@ class CoursController extends AbstractController
 
     public function consulter(ManagerRegistry $doctrine, int $id): Response
     {
-        $inscription = $doctrine->getRepository(Inscription::class)->find($id);
+        $cours = $doctrine->getRepository(Cours::class)->find($id);
         
-        if (!$inscription) {
+        if (!$cours) {
             throw $this->createNotFoundException(
-                'Aucune inscription trouvée avec le numéro ' . $id
+                'Aucun cours trouvée avec le numéro ' . $id
             );
         }
-    
-        $cours = $inscription->getCours(); 
-        $eleve = $inscription->getEleve(); 
-    
-        dump($inscription, $cours, $eleve); // Pour vérifier les données
         
-        return $this->render('inscription/consulter.html.twig', [
-            'inscription' => $inscription,
+        return $this->render('cours/consulter.html.twig', [
             'cours' => $cours,  
-            'eleves' => $eleve,
         ]);
     }
     

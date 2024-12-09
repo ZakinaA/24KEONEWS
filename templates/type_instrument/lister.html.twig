@@ -1,24 +1,23 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des professionnels{% endblock %}
+{% block title %}Liste des types d'instruments{% endblock %}
 {% block body %}
 	<h1>Liste des types d'instruments</h1>
 	<a class="bouton-ajouter" href="#">Ajouter un nouveau type d'instrument</a>
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
 				<th>Libelle</th>
+				<th>Classe de l'instrument</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for ti in pTypeInstrument %}
 				<tr>
-					<td>{{ ti.id }}</td>
 					<td>{{ ti.libelle }}</td>
           <td>
-          {% if e.classeinstrument is not null %}
-          {{ e.classeinstrument.libelle }}
+          {% if ti.classeinstrument is not null %}
+          {{ ti.classeinstrument.libelle }}
           {% else %}
             Non défini
           {% endif %}
@@ -36,5 +35,4 @@
 			{% endfor %}
 		</tbody>
 	</table>
-
 {% endblock %}

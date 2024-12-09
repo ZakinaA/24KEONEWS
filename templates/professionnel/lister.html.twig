@@ -3,11 +3,9 @@
 {% block body %}
 			<h1>Liste des professionnels</h1>
 			<a class="bouton-ajouter" href="{{ path('app_professionnel_ajouter') }}">Ajouter un professionnel</a>
-
 			<table>
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Nom</th>
 						<th>Numéro de Rue</th>
 						<th>Rue</th>
@@ -21,7 +19,6 @@
 				<tbody>
 					{% for p in pProfessionnels %}
 						<tr>
-							<td>{{ p.id }}</td>
 							<td>{{ p.nom }}</td>
 							<td>{{ p.numRue }}</td>
 							<td>{{ p.rue }}</td>

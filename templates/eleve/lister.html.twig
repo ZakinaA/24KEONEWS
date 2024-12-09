@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des professionnels
+{% block title %}Liste des élèves
 {% endblock %}
 {% block body %}
 	<h1>Liste des élèves</h1>
@@ -7,7 +7,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>ID</th>
 				<th>Nom</th>
 				<th>Prenom</th>
 				<th>Numéro de rue</th>
@@ -22,7 +21,6 @@
 		<tbody>
 			{% for eleve in pEleves %}
 				<tr>
-					<td>{{ eleve.id }}</td>
 					<td>{{ eleve.nom }}</td>
 					<td>{{ eleve.prenom }}</td>
 					<td>{{ eleve.numrue }}</td>
