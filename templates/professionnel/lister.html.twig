@@ -7,12 +7,8 @@
 				<thead>
 					<tr>
 						<th>Nom</th>
-						<th>Numéro de Rue</th>
-						<th>Rue</th>
-						<th>Code Postal</th>
 						<th>Ville</th>
-						<th>Téléphone</th>
-						<th>Email</th>
+						<th>Métier</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -20,12 +16,12 @@
 					{% for p in pProfessionnels %}
 						<tr>
 							<td>{{ p.nom }}</td>
-							<td>{{ p.numRue }}</td>
-							<td>{{ p.rue }}</td>
-							<td>{{ p.copos }}</td>
 							<td>{{ p.ville }}</td>
-							<td>{{ p.tel }}</td>
-							<td>{{ p.mail }}</td>
+							<td>
+								{% for metier in p.metiers %}
+									{{ metier.id }}{% if not loop.last %}, {% endif %}
+								{% endfor %}
+							</td>							
 							<td>
 								<a class="bouton-consulter" href="{{ path('app_professionnel_consulter', { id: p.id }) }}">Consulter</a>
 								<a class="bouton-modifier" href="{{ path('app_professionnel_modifier', { id: p.id }) }}">Modifier</a>
