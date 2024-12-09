@@ -1,19 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Inscription{% endblock %}
+{% block title %}Liste des inscriptions{% endblock %}
 
 {% block body %}
-    <h1>LISTE DES INSCRIPTIONS</h1>
+    <h1>Liste des inscriptions</h1>
     <table>
         <thead>
             <tr>
                 <th class="centered">Date d'Inscription</th>
+                <th class="centered">Cours</th>
+                <th class="centered">Eleve</th>
+                <th class="centered">Actions</th>
             </tr>
         </thead>
         <tbody>
             {% for i in pInscription %}
                 <tr>
-                    <td><a href="{{ path('app_inscription_consulter', { 'id': i.id }) }}">{{ i.dateInscription|date("d/m/Y H:i")}}</a></td>
+                    <td>{{ i.dateInscription|date("d/m/Y")}}</td>
+                    <td>{{ i.cours.libelle }}</td>
+                    <td>{{ i.eleve.nom }}</td>
+                    <td>
+                        <a class="bouton-consulter" href="{{ path('app_inscription_consulter', { id: i.id }) }}">Consulter</a>
+                        <a class="bouton-modifier" href="{{ path('app_inscription_modifier', { id: i.id }) }}">Modifier</a>
+                        <a class="bouton-supprimer" href="{{ path('app_inscription_supprimer', { id: i.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet inscription?')">Supprimer</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>

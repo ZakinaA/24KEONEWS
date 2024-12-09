@@ -1,24 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des instruments{% endblock %}
+{% block title %}Consultation d'un instrument{% endblock %}
 {% block body %}     
-    <a class="bouton-arriere" href="{{ path('app_instrument_lister') }}">Retourner en arrière</a>
-		<h5>PAGE DE CONSULTATION D'UN INSTRUMENT</h5>
-        <p>
-        <table >
-            <tr>
-                <td>Numéro de série : </td><td>{{instrument.numSerie}}</td>
-                    <td  rowspan="8" >
-                        {% set photo = 'instrument/'~ instrument.id ~'.jpg' %}
-                        <span class="zoom"><img src="{{ asset(photo | trans )}}" title="{{ instrument.numSerie}}"/></span></td></tr> </td>
-            <tr>
-            <tr>
-            <td>Date d'achat : </td>
-    </div>
-
-    <!-- Contenu principal à droite -->
-    <div class="content">
-        <h1>PAGE DE CONSULTATION D'UN INSTRUMENT</h1>
-
+        <h1>Consultation d'un instrument</h1>
         <table>
             <tr>
                 <td><strong>ID :</strong></td>
@@ -31,11 +14,11 @@
                 </td>
             </tr>
             <tr>
-                <td><strong>Numéro de Série :</strong></td>
+                <td>Numéro de Série :</td>
                 <td>{{ instrument.numSerie }}</td>
             </tr>
             <tr>
-                <td><strong>Date d'Achat :</strong></td>
+                <td>Date d'Achat :</td>
                 <td>
                     {% if instrument.dateAchat is not null %}
                         {{ instrument.dateAchat|date("d/m/Y") }}
@@ -54,7 +37,7 @@
                 <td>Couleur : </td><td>{{instrument.couleur}}</td>
             </tr>
             <tr>
-                <td><strong>Type d'Instrument :</strong></td>
+                <td>Type d'Instrument :</td>
                 <td>
                     {% if instrument.typeinstrument is not null %}
                         {{ instrument.typeinstrument.libelle }}
@@ -63,7 +46,8 @@
                     {% endif %}
                 </td>
             </tr>
-        </table><td><strong>Marque :</strong></td>
+            <tr>
+                <td>Marque :</td>
                 <td>
                     {% if instrument.marque is not null %}
                         {{ instrument.marque.libelle }}
@@ -73,7 +57,7 @@
                 </td>
             </tr>
             <tr>
-                <td><strong>Modèle :</strong></td>
+                <td>Modèle :</td>
                 <td>
                     {% if instrument.modele is not null %}
                         {{ instrument.modele.libelle }}
@@ -82,8 +66,12 @@
                     {% endif %}
                 </td>
             </tr>
+        </table>
+        <table class='table-consulter'>
             <tr>
-                <td><strong>Accessoires :</strong></td>
+                <td>Accessoires :</td>
+            </tr>
+            <tr>
                 <td class="accessory-list">
                     {% if instrument.accessoires|length > 0 %}
                         {% for accessoire in instrument.accessoires %}

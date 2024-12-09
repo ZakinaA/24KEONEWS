@@ -1,55 +1,8 @@
-{# templates/professeur/lister.html.twig #}
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Liste des Professeurs{% endblock %}</title>
-        {% block stylesheets %}
-            <style>
-                table {
-                    width: 80%;
-                    margin: 0 auto;
-                    border-collapse: collapse;
-                }
-                th, td {
-                    padding: 10px;
-                    text-align: left;
-                    border: 1px solid #ddd;
-                }
-                th {
-                    background-color: #f2f2f2;
-                }
-                .container {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 20px;
-                }
-                .links {
-                    width: 20%;
-                    border-right: 1px solid #ddd;
-                    padding-right: 20px;
-                }
-                .content {
-                    width: 75%;
-                }
-            </style>
-        {% endblock %}
-    </head>
-    <body>
-        <div class="container">
-            <div class="links">
-                <h3>Menu</h3>
-                <ul>
-                    <li><a href="{{ path('app_lister_instrument') }}">Lister Instruments</a></li>
-                    <li><a href="{{ path('Type_instrument_lister') }}">Type Instruments</a></li>
-                    <li><a href="{{ path('app_Accessoire_lister') }}">Accessoires</a></li>
-                    <li><a href="{{ path('app_Marque_lister') }}">Marques</a></li>
-                    <li><a href="{{ path('app_Modele_lister') }}">Modèles</a></li>
-                </ul>
-            </div>
-            <div class="content">
-                <h1>Liste des Professeurs</h1>
+{% extends 'base.html.twig' %}
+{% block title %}Liste des professeurs{% endblock %}
+{% block body %}
+    <h1>Liste des professeurs</h1>
+			<a class="bouton-ajouter" href="{{ path('app_ajouter_professeur') }}">Ajouter un professeur</a>
                 <table>
                     <thead>
                         <tr>
@@ -58,6 +11,7 @@
                             <th>Adresse</th>
                             <th>Téléphone</th>
                             <th>Email</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,6 +22,11 @@
                                 <td>{{ professeur.numRue }} {{ professeur.rue }}, {{ professeur.copos }} {{ professeur.ville }}</td>
                                 <td>{{ professeur.tel }}</td>
                                 <td>{{ professeur.mail }}</td>
+                                <td>
+                                    <a class="bouton-consulter" href="{{ path('app_consulter_professeur', { id: professeur.id }) }}">Consulter</a>
+                                    <a class="bouton-modifier" href="{{ path('app_modifier_professeur', { id: professeur.id }) }}">Modifier</a>
+                                    <a class="bouton-supprimer" href="{{ path('app_supprimer_professeur', { id: professeur.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce professeur?')">Supprimer</a>
+                                </td>
                             </tr>
                         {% else %}
                             <tr>
@@ -76,7 +35,4 @@
                         {% endfor %}
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </body>
-</html>
+{% endblock %}

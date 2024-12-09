@@ -1,16 +1,38 @@
 {% extends 'base.html.twig' %}
-{% block title %}Liste des professionnels{% endblock %}
+{% block title %}Consultation d'un responsable{% endblock %}
 {% block body %}
     	<a class="bouton-arriere" href="{{ path('app_responsable_lister') }}">Retourner en arrière</a>
-		<h5>{{responsable.nom}} {{responsable.prenom}}</h5>
+		<h1>Consultation d'un responsable</h1>
+        <h3>Responsable</h3>
         <table class="table-consulter">
-     		<tr><td>ID : </td><td>{{responsable.id}} </td></tr>
-	    	<tr><td>Rue : </td><td>{{responsable.numrue}} {{responsable.rue}}</td></tr>
-		 	<tr><td>Code Postal : </td><td>{{responsable.copos}}</td></tr>
-		  	<tr><td>Ville : </td><td>{{responsable.ville}}</td></tr>
-	   		<tr><td>Téléphone : </td><td>{{responsable.tel}}</td></tr>
-       	   	<tr><td>E-Mail : </td><td>{{responsable.mail}}</td></tr>
-		</table>
+            <thead>
+                <tr>
+                    <th colspan="2">{{ responsable.nom }} {{ responsable.prenom }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rue :</td>
+                    <td>{{ responsable.numrue }} {{ responsable.rue }}</td>
+                </tr>
+                <tr>
+                    <td>Code Postal :</td>
+                    <td>{{ responsable.copos }}</td>
+                </tr>
+                <tr>
+                    <td>Ville :</td>
+                    <td>{{ responsable.ville }}</td>
+                </tr>
+                <tr>
+                    <td>Téléphone :</td>
+                    <td>{{ responsable.tel }}</td>
+                </tr>
+                <tr>
+                    <td>E-Mail :</td>
+                    <td>{{ responsable.mail }}</td>
+                </tr>
+            </tbody>
+        </table>
         <table>
             <td>
                 <table class="table-consulter">

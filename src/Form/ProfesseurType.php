@@ -17,41 +17,41 @@ class ProfesseurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom', TextType::class, [
-                'label' => 'Nom',
-                'attr' => ['placeholder' => 'Entrez le nom']
-            ])
-            ->add('prenom', TextType::class, [
-                'label' => 'Prénom',
-                'attr' => ['placeholder' => 'Entrez le prénom']
-            ])
-            ->add('numRue', IntegerType::class, [
-                'label' => 'Numéro de rue',
-                'attr' => ['placeholder' => 'Entrez le numéro de rue']
-            ])
-            ->add('rue', TextType::class, [
-                'label' => 'Rue',
-                'attr' => ['placeholder' => 'Entrez la rue']
-            ])
-            ->add('copos', IntegerType::class, [
-                'label' => 'Code postal',
-                'attr' => ['placeholder' => 'Entrez le code postal']
-            ])
-            ->add('ville', TextType::class, [
-                'label' => 'Ville',
-                'attr' => ['placeholder' => 'Entrez la ville']
-            ])
-            ->add('tel', TelType::class, [
-                'label' => 'Téléphone',
-                'attr' => ['placeholder' => 'Entrez le numéro de téléphone']
-            ])
-            ->add('mail', EmailType::class, [
-                'label' => 'Email',
-                'attr' => ['placeholder' => 'Entrez l\'email']
-            ])
-            ->add('enregistrer', SubmitType::class, [
-                'label' => 'Enregistrer Professeur'
-            ]);
+        ->add('nom', TextType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez le nom'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('prenom', TextType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez le prénom'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('numRue', IntegerType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Numéro de rue'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('rue', TextType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez la rue'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('copos', IntegerType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez le code postal'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('ville', TextType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez la ville'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('tel', TelType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez le numéro de téléphone'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('mail', EmailType::class, [
+            'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez l\'email'],
+            'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('enregistrer', SubmitType::class, [
+            'attr' => ['class' => 'btn btn-primary mt-3'],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

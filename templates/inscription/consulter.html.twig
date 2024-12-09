@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Consultation d'Inscription{% endblock %}
-
+{% block title %}Consultation d'une inscription{% endblock %}
 {% block body %}
-    <h5>PAGE DE CONSULTATION D'UNE INSCRIPTION</h5>
+    <h1>Consultation d'une inscription</h1>
     <p>
-    <table>
+    <table class="table-consulter">
         <tr>
-            <td>Date d'Inscription : </td>
+            <td>ID</td>
+            <td>Date d'Inscription</td>
+        </tr>
+        <tr>
+            <td>{{ inscription.id }}</td>
             <td>{{ inscription.dateInscription | date('d/m/Y')}}</td>
         </tr>
-        </table>
-        <tr>
-
-        <table style="border:1px solid black;">
+    </table>
+    <table class="table-consulter">
         <h3>Cours</h3>
                 <tr>
+                    <th>ID</th>
                     <th>Nom</th>
                     <th>Age Minimum</th>
                     <th>Heure Debut</th>
@@ -24,6 +25,7 @@
                 </tr>
 
         {% if inscription.cours is not null %}
+                <td>{{ inscription.cours.id }}</td>
                 <td>{{ inscription.cours.libelle }}</td>
                 <td>{{ inscription.cours.ageMini }}</td>
                 <td>{{ inscription.cours.heureDebut | date('H:i') }}</td>
@@ -33,22 +35,20 @@
             <tr><td>Cours : </td><td>Aucun cours associé</td></tr>
         {% endif %}
 
-        <table style="border:1px solid black;">
+        <table class="table-consulter">
             <h3>Eleve inscrit</h3>
                 <tr>
+                    <th>ID</th>
                     <th>Nom Prenom</th>
-                    <th>Id</th>
                     <th>Adresse</th>
                     <th>Code Postal</th>
                     <th>Ville</th>
                     <th>Telephone</th>
                     <th>Mail</th>
                 </tr>
-
         {% if inscription.eleve is not empty %}
-
-                    <th>{{ inscription.eleve.nom }} {{ inscription.eleve.prenom }}</th>
                     <td>{{ inscription.eleve.id }} </td>
+                    <td>{{ inscription.eleve.nom }} {{ inscription.eleve.prenom }}</td>
                     <td>{{ inscription.eleve.numrue }} {{inscription.eleve.rue }}</td>
                     <td>{{ inscription.eleve.copos }}</td>
                     <td>{{ inscription.eleve.ville }}</td>

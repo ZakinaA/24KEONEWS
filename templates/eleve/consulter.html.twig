@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
-{% block title %}Consultation de Cours{% endblock %}
+{% block title %}Consultation d'un élève{% endblock %}
 {% block body %}
     <a class="bouton-arriere" href="{{ path('app_eleve_lister') }}">Retourner en arrière</a>
-    <h2>PAGE DE CONSULTATION D'UN ÉLÈVE</h2>
+    <h1>Consultation d'un élève</h1>
     <h3>Élève</h3>
     <table class="table-consulter">
         <thead>
@@ -33,7 +33,6 @@
             </tr>
         </tbody>
     </table>
-
     <h3>Responsable</h3>
     <table class="table-consulter">
         <thead>
@@ -79,7 +78,6 @@
         <tbody>
             {% for inscription in eleve.inscriptions %}
                         <tr>
-                            <td>{{inscription.cours.id }}</td>
                             <td>{{inscription.cours.libelle}}</td>
                             <td>{{inscription.cours.ageMini }}</td>
                             <td>{{inscription.cours.heureDebut | date('H:i')}}</td>
