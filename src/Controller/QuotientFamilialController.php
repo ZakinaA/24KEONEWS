@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\QuotientFamilial;
+use App\Form\QuotientFamilialType;
+use Symfony\Component\HttpFoundation\Request;
 
 class QuotientFamilialController extends AbstractController
 {
@@ -38,5 +40,29 @@ class QuotientFamilialController extends AbstractController
             'quotient_familial' => $quotient_familial,
         ]);
     }
-    
+
+    public function ajouter(ManagerRegistry $doctrine, Request $request)
+    {
+        $quotient_familial = new QuotientFamilial();
+        $form = $this->createForm(QuotientFamilialType::class, $quotient_familial);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $quotient_familial = $form->getData();
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($quotient_familial);
+            $entityManager->flush();
+
+            return $this->render('quotient_familial/consulter.html.twig', [
+                'quotient_familial' => $quotient_familial,
+            ]);
+        }
+        else {
+            return $this->render('quotient_familial/ajouter.html.twig', array(
+                'form' => $form->createView(),
+            ));
+        }
+    }
 }
