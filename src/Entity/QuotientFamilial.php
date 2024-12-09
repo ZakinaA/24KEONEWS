@@ -14,6 +14,12 @@ class QuotientFamilial
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Le libelle doit comporter au minimum 2 caractères',
+        maxMessage: 'Le libelle doit comporter au maximum 50 caractères',
+    )]
     private ?string $libelle = null;
 
     #[ORM\Column]
