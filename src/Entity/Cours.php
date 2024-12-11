@@ -35,6 +35,9 @@ class Cours
     #[ORM\OneToMany(targetEntity: Inscription::class, mappedBy: 'cours')]
     private Collection $inscriptions;
 
+    #[ORM\ManyToOne(inversedBy: 'cours')]
+    private ?TypeCours $typecours = null;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -132,6 +135,18 @@ class Cours
                 $inscription->setCours(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypecours(): ?TypeCours
+    {
+        return $this->typecours;
+    }
+
+    public function setTypecours(?TypeCours $typecours): static
+    {
+        $this->typecours = $typecours;
 
         return $this;
     }
