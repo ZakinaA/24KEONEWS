@@ -8,9 +8,6 @@
                         <tr>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Adresse</th>
-                            <th>Téléphone</th>
-                            <th>Email</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -19,9 +16,6 @@
                             <tr>
                                 <td>{{ professeur.nom }}</td>
                                 <td>{{ professeur.prenom }}</td>
-                                <td>{{ professeur.numRue }} {{ professeur.rue }}, {{ professeur.copos }} {{ professeur.ville }}</td>
-                                <td>{{ professeur.tel }}</td>
-                                <td>{{ professeur.mail }}</td>
                                 <td>
                                     <a class="bouton-consulter" href="{{ path('app_consulter_professeur', { id: professeur.id }) }}">Consulter</a>
                                     <a class="bouton-modifier" href="{{ path('app_modifier_professeur', { id: professeur.id }) }}">Modifier</a>

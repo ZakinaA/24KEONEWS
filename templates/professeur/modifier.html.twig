@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Modifier une Professeur{% endblock %}
 {% block body %}
-    <a class="bouton-arriere" href="{{ path('app_professeur_lister') }}">Retourner en arrière</a>
-    <h1>Modifier un Professeur</h1>
-    
+    <a class="bouton-arriere" href="{{ path('app_lister_professeur') }}">Retourner en arrière</a>
+    <h1>Modifier un Professeur</h1>    
     {{ form_start(form) }}
     {{ form_widget(form) }}
     {{ form_end(form) }}
