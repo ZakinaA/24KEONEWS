@@ -4,40 +4,46 @@
     <a class="bouton-arriere" href="{{ path('app_cours_lister') }}">Retourner en arrière</a>
     <h1>Consultation d'un Cours</h1>
     <p>
+
+
     <table class="table-consulter">
         <tr>
-            <td>Libelle : </td>
+                <th>Cours</th>
+                <th>ID</th>
+                <th>Heure de Debut</th>
+                <th>Heure de Fin</th>
+                <th>Jour</th>
+        </tr>
+        <tr>
             <td>{{ cours.libelle }}</td>
-        </tr>
-        <tr>
-            <td>Age Minimum : </td>
             <td>{{ cours.ageMini }}</td>
-        </tr>
-        <tr>
-            <td>Heure de Debut : </td>
             <td>{{ cours.heureDebut | date('H:i')}}</td>
-        </tr>
-        <tr>
-            <td>Heure de Fin : </td>
             <td>{{ cours.heureFin | date('H:i')}}</td>
-        </tr>
-        <tr>
-            <td>Jour : </td>
             <td>{{ cours.jour.libelle }}</td>
         </tr>
     </table>
 
+<table class="table-consulter">
     <h1>Élèves inscrits au cours</h1>
+                 <tr>
+                    <th>Nom Prenom</th>
+                    <th>ID</th>
+                    <th>Adresse</th>
+                    <th>Code Postal</th>
+                    <th>Ville</th>
+                    <th>Telephone</th>
+                    <th>Mail</th>
+
+                </tr>
         {% if cours.inscriptions is not empty %}
         {% for inscription in cours.inscriptions %}
-            <table class="table-consulter">
                 <th>{{inscription.eleve.nom}} {{inscription.eleve.prenom}}</th>
-                <tr><td>ID : </td><td>{{inscription.eleve.id}} </td></tr>
-                <tr><td>Rue : </td><td>{{inscription.eleve.numrue}} {{inscription.eleve.rue}}</td></tr>
-                <tr><td>Code Postal : </td><td>{{inscription.eleve.copos}}</td></tr>
-                <tr><td>Ville : </td><td>{{inscription.eleve.ville}}</td></tr>
-                <tr><td>Téléphone : </td><td>{{inscription.eleve.tel}}</td></tr>
-                <tr><td>E-Mail : </td><td>{{inscription.eleve.mail}}</td></tr>
+                <td>{{inscription.eleve.id}} </td>
+                <td>{{inscription.eleve.numrue}} {{inscription.eleve.rue}}</td>
+                <td>{{inscription.eleve.copos}}</td>
+                <td>{{inscription.eleve.ville}}</td>
+                <td>{{inscription.eleve.tel}}</td>
+                <td>{{inscription.eleve.mail}}</td>
             </table>
         {% endfor %}    
         {% else %}
