@@ -20,6 +20,16 @@
                 <td>Ville : </td><td>{{professionnel.ville}}</td>
             </tr>
             <tr>
+                <td>Metier(s) : </td>
+                <td>
+                    {% for m in professionnel.metiers %}
+                        {{ m.libelle }}{% if not loop.last %}, {% endif %}
+                    {% else %}
+                        Aucun métier associé.
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
                 <td>Téléphone : </td><td>{{professionnel.tel}}</td>
             </tr>
             <tr>
