@@ -36,6 +36,7 @@ class Cours
     private Collection $inscriptions;
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
+    private ?TypeCours $typecours = null;
     private ?Professeur $professeur = null;
 
     public function __construct()
@@ -139,6 +140,15 @@ class Cours
         return $this;
     }
 
+    public function getTypecours(): ?TypeCours
+    {
+        return $this->typecours;
+    }
+
+    public function setTypecours(?TypeCours $typecours): static
+    {
+        $this->typecours = $typecours;
+      
     public function getProfesseur(): ?Professeur
     {
         return $this->professeur;

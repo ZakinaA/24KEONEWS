@@ -13,6 +13,7 @@
                 <th>Heure de Debut</th>
                 <th>Heure de Fin</th>
                 <th>Jour</th>
+                <th>Type de Cours</th>
         </tr>
         <tr>
             <td>{{ cours.libelle }}</td>
@@ -20,6 +21,7 @@
             <td>{{ cours.heureDebut | date('H:i')}}</td>
             <td>{{ cours.heureFin | date('H:i')}}</td>
             <td>{{ cours.jour.libelle }}</td>
+            <td>{{ cours.typecours.libelle }}</td>
         </tr>
     </table>
 
