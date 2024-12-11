@@ -60,4 +60,31 @@
                 </td>
             </tr>
         </table>
+        <table>
+    <thead>
+        <tr>
+            <th colspan="4">Cours Enseignés</th>
+        </tr>
+        <tr>
+            <th>Libellé</th>
+            <th>Heure de Début</th>
+            <th>Heure de Fin</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if professeur.cours|length > 0 %}
+            {% for cours in professeur.cours %}
+                <tr>
+                    <td>{{ cours.libelle }}</td>
+                    <td>{{ cours.heureDebut|date('H:i') }}</td>
+                    <td>{{ cours.heureFin|date('H:i') }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="4"><span class="no-data">Aucun cours enseigné</span></td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
 {% endblock %}

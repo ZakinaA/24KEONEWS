@@ -1,27 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-		
-		LISTE DES Modèle</br>
+{% extends 'base.html.twig' %}
+{% block title %}Liste des Modele
+{% endblock %}
+{% block body %}
+		LISTE DES MODELE</br>
 		<table>
 		{% for e in pmodele %}
 		<tr>
-			<td><a href="{{ path('app_Modele_lister', { 'id': e.id }) }}">{{ e.libelle }}</a></td>
-			<td>{{ e.libelle }}</a></td>
+			<td>{{ e.libelle }}</td>
 	{% else %}
 		<tr>
 		<td>Aucun instrument n'a été trouvé.</td>
 		</tr>
 	{% endfor %}
 </table>
-	
-	 
-    </body>
-</html>
+{% endblock %}

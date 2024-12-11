@@ -84,4 +84,33 @@
                 </td>
             </tr>
         </table>
+        <h1>Intervention</h1>
+        <table class="table-interventions">
+    <thead>
+        <tr>
+            <th>Date Début</th>
+            <th>Date Fin</th>
+            <th>Descriptif</th>
+            <th>Prix</th>
+            <th>Quotité</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if instrument.interventions|length > 0 %}
+            {% for intervention in instrument.interventions %}
+                <tr>
+                    <td>{{ intervention.dateDebut ? intervention.dateDebut|date('d/m/Y') : 'Non spécifiée' }}</td>
+                    <td>{{ intervention.dateFin ? intervention.dateFin|date('d/m/Y') : 'Non spécifiée' }}</td>
+                    <td>{{ intervention.descriptif }}</td>
+                    <td>{{ intervention.prix }} €</td>
+                    <td>{{ intervention.quotite }}</td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="5"><span class="no-data">Aucune intervention associée</span></td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
 {% endblock %}
