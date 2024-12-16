@@ -22,7 +22,7 @@ class MetierType extends AbstractType
                 'multiple' => true,
             ])
             ->add('enregistrer', SubmitType::class, [
-                'label' => 'Nouvelle intervention',
+                'label' => 'Nouveau Métier',
                 'attr' => ['class' => 'btn btn-primary']
             ]);
     }
