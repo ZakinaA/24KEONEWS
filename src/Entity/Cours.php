@@ -37,7 +37,9 @@ class Cours
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
     private ?TypeCours $typecours = null;
+    #[ORM\ManyToOne(targetEntity: Professeur::class, inversedBy: 'cours')]
     private ?Professeur $professeur = null;
+    
 
     public function __construct()
     {
@@ -148,7 +150,7 @@ class Cours
     public function setTypecours(?TypeCours $typecours): static
     {
         $this->typecours = $typecours;
-      
+    } 
     public function getProfesseur(): ?Professeur
     {
         return $this->professeur;
