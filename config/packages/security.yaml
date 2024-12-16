@@ -52,7 +52,7 @@ security:
         - { path: ^/(eleve|cours)/(lister|consulter), roles: ROLE_ELEVE }
         - { path: ^/(eleve|cours|responsable)/(lister|consulter), roles: ROLE_RESP }
         - { path: ^/(eleve|cours|responsable|professeur)/(lister|consulter), roles: ROLE_PROF }
-        - { path: ^/(instrument|typeinstrument|accessoire|marque|modele|professeur|cours|intervention|contratpret|professionnel|inscription)/(lister|consulter|ajouter|modifier), roles: ROLE_GEST }
+        - { path: ^/(instrument|typeinstrument|accessoire|marque|metier|modele|professeur|cours|intervention|contratpret|professionnel|inscription)/(lister|consulter|ajouter|modifier), roles: ROLE_GEST }
         - { path: ^/.*, roles: ROLE_ADMIN }
 when@test:
     security:

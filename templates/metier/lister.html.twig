@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}Liste des métiers{% endblock %}
 {% block body %}
+            {% if is_granted('ROLE_GEST') %}
 			<h1>Liste des métiers</h1>
 			<a class="bouton-ajouter" href="{{ path('app_metier_ajouter') }}">Ajouter un métier</a>
+	        {% endif %}
 			<table>
 				<thead>
 					<tr>
@@ -16,8 +18,12 @@
 							<td>{{ p.libelle }}</td>
 							<td>
 								<a class="bouton-consulter" href="{{ path('app_metier_consulter', { id: p.id }) }}">Consulter</a>
+    					        {% if is_granted('ROLE_GEST') %}
 								<a class="bouton-modifier" href="{{ path('app_metier_modifier', { id: p.id }) }}">Modifier</a>
+                                {% endif %}
+                                {% if is_granted('ROLE_ADMIN') %}
 								<a class="bouton-supprimer" href="{{ path('app_metier_supprimer', { id: p.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce professionnel ?')">Supprimer</a>
+							    {% endif %}
 							</td>
 						</tr>
 					{% else %}
