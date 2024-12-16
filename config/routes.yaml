@@ -82,7 +82,7 @@ app_professeur:
     path: /professeur
     controller: App\Controller\ProfesseurController::index
 
-app_lister_professeur:
+app_professeur_lister:
     path: /professeur/lister
     controller: App\Controller\ProfesseurController::lister
 
@@ -280,8 +280,8 @@ app_quotient_familial_consulter:
 
 # Authentification
 
-app_auth:
-    path: /auth
+app_security_auth:
+    path: /security/auth/
     controller: App\Controller\AuthController::index
 
 # Registration

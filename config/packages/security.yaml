@@ -19,7 +19,7 @@ security:
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_security_logout
-                target: app_auth
+                target: app_security_auth
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -35,16 +35,25 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    access_control:
-        - { path: ^/eleve, roles: ROLE_ELEVE }
-        - { path: ^/prof, roles: ROLE_PROF }
-        - { path: ^/gest, roles: ROLE_GEST }
-        - { path: ^/admin, roles: ROLE_ADMIN }
-    role_hierarchy:
-        ROLE_ADMIN: [ROLE_ELEVE, ROLE_PROF, ROLE_GEST]
-        ROLE_GEST: [ROLE_ELEVE, ROLE_PROF]
-        ROLE_PROF: [ROLE_ELEVE]
 
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_ELEVE, ROLE_RESP, ROLE_PROF, ROLE_GEST]
+        ROLE_GEST: [ROLE_ELEVE, ROLE_RESP, ROLE_PROF]
+        ROLE_PROF: [ROLE_ELEVE, ROLE_RESP]
+        ROLE_RESP: [ROLE_ELEVE]
+    
+    access_control:
+        - { path: ^/security/auth, roles: PUBLIC_ACCESS  }
+        - { path: ^/security/login, roles: PUBLIC_ACCESS  }
+        - { path: ^/security/logout, roles: PUBLIC_ACCESS  }
+        - { path: ^/registration/register, roles: PUBLIC_ACCESS  }
+        
+        - { path: ^, roles: ROLE_ELEVE }
+        - { path: ^/(eleve|cours)/(lister|consulter), roles: ROLE_ELEVE }
+        - { path: ^/(eleve|cours|responsable)/(lister|consulter), roles: ROLE_RESP }
+        - { path: ^/(eleve|cours|responsable|professeur)/(lister|consulter), roles: ROLE_PROF }
+        - { path: ^/(instrument|typeinstrument|accessoire|marque|modele|professeur|cours|intervention|contratpret|professionnel|inscription)/(lister|consulter|ajouter|modifier), roles: ROLE_GEST }
+        - { path: ^/.*, roles: ROLE_ADMIN }
 when@test:
     security:
         password_hashers:

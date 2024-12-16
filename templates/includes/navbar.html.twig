@@ -3,20 +3,30 @@
 	<h1>EMUSIC</h1>
 	<!-- Div contenant les liens de la navbar -->
 	<div class="navbar-links">
+    	{% if is_granted('ROLE_ELEVE') %}
     	<a href="{{ path('app_index') }}">Accueil</a>
-		<a href="{{ path('app_contratpret_lister') }}">Contrats</a>
 		<a href="{{ path('app_cours_lister') }}">Cours</a>
 		<a href="{{ path('app_eleve_lister') }}">Élèves</a>
-		<a href="{{ path('app_inscription_lister') }}">Inscriptions</a>
 		<a href="{{ path('app_instrument_lister') }}">Instruments</a>
-		<a href="{{ path('app_intervention_lister') }}">Interventions</a>
-		<a href="{{ path('app_lister_professeur') }}">Professeurs</a>
-		<a href="{{ path('app_professionnel_lister') }}">Professionnels</a>
-		<a href="{{ path('app_metier_lister') }}">Métiers</a>
-		<a href="{{ path('app_responsable_lister') }}">Responsables</a>
-		<a href="{{ path('app_typeinstrument_lister') }}">Type d'instruments</a>
+	    	{% if is_granted('ROLE_RESP') %}
+			<a href="{{ path('app_responsable_lister') }}">Responsables</a>
+    			{% if is_granted('ROLE_PROF') %}
+				<a href="{{ path('app_professeur_lister') }}">Professeurs</a>
+    				{% if is_granted('ROLE_GEST') %}
+					<a href="{{ path('app_contratpret_lister') }}">Contrats</a>
+					<a href="{{ path('app_inscription_lister') }}">Inscriptions</a>
+					<a href="{{ path('app_intervention_lister') }}">Interventions</a>
+					<a href="{{ path('app_professionnel_lister') }}">Professionnels</a>
+					<a href="{{ path('app_typeinstrument_lister') }}">Type d'instruments</a>
+		      <a href="{{ path('app_metier_lister') }}">Métiers</a>		
+    				{% endif %}
+				{% endif %}
+			{% endif %}
+    	{% endif %}
 	</div>
 	<div class="utilisateur">
+    	{% if is_granted('ROLE_ELEVE') %}
 		<a href="{{ path('app_security_logout') }}">Se déconnecter</a>
+    	{% endif %}
 	</div>
 </div>
