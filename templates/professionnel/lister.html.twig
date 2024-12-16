@@ -19,7 +19,7 @@
 							<td>{{ p.ville }}</td>
 							<td>
 								{% for metier in p.metiers %}
-									{{ metier.id }}{% if not loop.last %}, {% endif %}
+									{{ metier.libelle }}{% if not loop.last %}, {% endif %}
 								{% endfor %}
 							</td>							
 							<td>
