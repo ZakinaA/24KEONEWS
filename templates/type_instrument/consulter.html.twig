@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Consultation d'un professeur{% endblock %}
+{% block body %}
+		<h1>Consultation d'un type instruemnt</h1>
+<table>
+            <tr>
+                <td><strong>Libelle :</strong></td>
+                <td><strong>Classe de l'instrument :</strong></td>
+            </tr>
+            <tr>
+                <td>{{ typeInstrument.libelle }}</td>                
+                <td>
+                    {% if typeInstrument.classeinstrument is not null %}
+                        {{ typeInstrument.classeinstrument.libelle }}
+                    {% else %}
+                        Non défini
+                    {% endif %}
+                </td>
+            </tr>
+</talbe>
+{% endblock %}

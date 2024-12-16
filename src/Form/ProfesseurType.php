@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Professeur;
+use App\Entity\Cours;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -11,7 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 class ProfesseurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -48,6 +50,13 @@ class ProfesseurType extends AbstractType
         ->add('mail', EmailType::class, [
             'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez l\'email'],
             'label_attr' => ['class' => 'form-label'],
+        ])
+        ->add('cours', EntityType::class, [
+            'class' => Cours::class,
+            'choice_label' => 'libelle', 
+            'multiple' => true, 
+            'expanded' => true, 
+            'attr' => ['class' => 'form-control'],
         ])
         ->add('enregistrer', SubmitType::class, [
             'attr' => ['class' => 'btn btn-primary mt-3'],
