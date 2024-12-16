@@ -18,7 +18,7 @@ class Metier
     #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\ManyToMany(targetEntity: professionnel::class, inversedBy: 'metiers')]
+    #[ORM\ManyToMany(targetEntity: Professionnel::class, inversedBy: 'metiers')]
     private Collection $professionnel;
 
     public function __construct()
@@ -44,14 +44,14 @@ class Metier
     }
 
     /**
-     * @return Collection<int, professionnel>
+     * @return Collection<int, Professionnel>
      */
     public function getProfessionnel(): Collection
     {
         return $this->professionnel;
     }
 
-    public function addProfessionnel(professionnel $professionnel): static
+    public function addProfessionnel(Professionnel $professionnel): static
     {
         if (!$this->professionnel->contains($professionnel)) {
             $this->professionnel->add($professionnel);
@@ -60,7 +60,7 @@ class Metier
         return $this;
     }
 
-    public function removeProfessionnel(professionnel $professionnel): static
+    public function removeProfessionnel(Professionnel $professionnel): static
     {
         $this->professionnel->removeElement($professionnel);
 
