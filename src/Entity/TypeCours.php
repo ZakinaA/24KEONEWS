@@ -2,30 +2,31 @@
 
 namespace App\Entity;
 
-use App\Repository\QuotientFamilialRepository;
+use App\Repository\TypeCoursRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: QuotientFamilialRepository::class)]
-class QuotientFamilial
+#[ORM\Entity(repositoryClass: TypeCoursRepository::class)]
+class TypeCours
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $libelle = null;
 
-    #[ORM\Column]
-    private ?int $quotientMini = null;
+    #[ORM\OneToMany(targetEntity: Cours::class, mappedBy: 'typecours')]
+    private Collection $cours;
 
-    #[ORM\OneToMany(targetEntity: Tarif::class, mappedBy: 'quotientfamilial')]
+    #[ORM\OneToMany(targetEntity: Tarif::class, mappedBy: 'typecours')]
     private Collection $tarifs;
 
     public function __construct()
     {
+        $this->cours = new ArrayCollection();
         $this->tarifs = new ArrayCollection();
     }
 
@@ -46,14 +47,32 @@ class QuotientFamilial
         return $this;
     }
 
-    public function getQuotientMini(): ?int
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCours(): Collection
     {
-        return $this->quotientMini;
+        return $this->cours;
     }
 
-    public function setQuotientMini(int $quotientMini): static
+    public function addCour(Cours $cour): static
     {
-        $this->quotientMini = $quotientMini;
+        if (!$this->cours->contains($cour)) {
+            $this->cours->add($cour);
+            $cour->setTypecours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCour(Cours $cour): static
+    {
+        if ($this->cours->removeElement($cour)) {
+            // set the owning side to null (unless already changed)
+            if ($cour->getTypecours() === $this) {
+                $cour->setTypecours(null);
+            }
+        }
 
         return $this;
     }
@@ -70,7 +89,7 @@ class QuotientFamilial
     {
         if (!$this->tarifs->contains($tarif)) {
             $this->tarifs->add($tarif);
-            $tarif->setQuotientfamilial($this);
+            $tarif->setTypecours($this);
         }
 
         return $this;
@@ -80,8 +99,8 @@ class QuotientFamilial
     {
         if ($this->tarifs->removeElement($tarif)) {
             // set the owning side to null (unless already changed)
-            if ($tarif->getQuotientfamilial() === $this) {
-                $tarif->setQuotientfamilial(null);
+            if ($tarif->getTypecours() === $this) {
+                $tarif->setTypecours(null);
             }
         }
 

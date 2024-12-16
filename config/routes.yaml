@@ -300,6 +300,7 @@ app_security_logout:
     path: /security/logout
     controller: App\Controller\SecurityController::logout
 
+
 # Metier 
 
 app_metier_lister:
@@ -321,3 +322,13 @@ app_metier_modifier:
 app_metier_supprimer:
     path: /metier/supprimer/{id}
     controller: App\Controller\MetierController::supprimer
+
+#Tarif
+
+app_tarif_index:
+    path: /tarif/index
+    controller: App\Controller\TarifController::index
+
+app_tarif_lister:
+    path: /tarif/lister
+    controller: App\Controller\TarifController::lister
