@@ -10,12 +10,7 @@
 		<thead>
 			<tr>
 				<th>Numéro de Série</th>
-				<th>Date d'Achat</th>
-				<th>Prix d'Achat</th>
-				<th>Utilisation</th>
-				<th>Couleur</th>
 				<th>Type d'Instrument</th>
-				<th>Accessoire</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -23,26 +18,9 @@
 			{% for i in pInstrument %}
 				<tr>
 					<td>{{ i.numSerie }}</td>
-					<td>{{ i.dateAchat|date('d/m/Y') }}</td>
-					<td>{{ i.prixAchat }}
-						€</td>
-					<td>{{ i.utilisation }}</td>
-					<td>{{ i.couleur }}</td>
 					<td>
 						{% if i.typeinstrument is not null %}
 							{{ i.typeinstrument.libelle }}
-						{% else %}
-							Non défini
-						{% endif %}
-					</td>
-					<td>
-						{% if i.accessoires|length > 0 %}
-							{% for accessoire in i.accessoires %}
-								{{ accessoire.libelle }}
-								{% if not loop.last %},
-								{% endif %}
-								{# Sépare les accessoires par une virgule #}
-							{% endfor %}
 						{% else %}
 							Non défini
 						{% endif %}

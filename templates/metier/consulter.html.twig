@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}Consultation d'un professionnel{% endblock %}
+{% block body %}
+    <a class="bouton-arriere" href="{{ path('app_metier_lister') }}">Retourner en arrière</a>
+    <h1>Consultation d'un métier</h1>
+    <table class="table-consulter">
+    <thead>
+        <th colspan="2">{{ metier.libelle }}</th>
+    </thead>
+        <tr>
+            <td>
+                {% for professionnel in metier.professionnel %}
+                    {{ professionnel.nom }}{% if not loop.last %}, {% endif %}
+                {% else %}
+                    Aucun professionnel associé.
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+{% endblock %}

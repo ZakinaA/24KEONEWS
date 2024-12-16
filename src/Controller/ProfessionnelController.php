@@ -67,28 +67,34 @@ class ProfessionnelController extends AbstractController
 
     public function modifier(ManagerRegistry $doctrine, $id, Request $request)
     {
-
-        //récupération de l'étudiant dont l'id est passé en paramètre
         $professionnel = $doctrine->getRepository(Professionnel::class)->find($id);
-
+    
         if (!$professionnel) {
             throw $this->createNotFoundException('Aucun professionnel trouvé avec le numéro ' . $id);
-        } else {
-            $form = $this->createForm(ProfessionnelModifierType::class, $professionnel);
-            $form->handleRequest($request);
-
-            if ($form->isSubmitted() && $form->isValid()) {
-
-                $professionnel = $form->getData();
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($professionnel);
-                $entityManager->flush();
-                return $this->render('professionnel/consulter.html.twig', ['professionnel' => $professionnel,]);
-            } else {
-                return $this->render('professionnel/modifier.html.twig', array('form' => $form->createView(), ));
-            }
         }
+    
+        $form = $this->createForm(ProfessionnelModifierType::class, $professionnel);
+        $form->handleRequest($request);
+    
+        if ($form->isSubmitted() && $form->isValid()) {
+            $professionnel = $form->getData();
+    
+            $entityManager = $doctrine->getManager();
+    
+            $entityManager->persist($professionnel);
+            $entityManager->flush();
+    
+            return $this->render('professionnel/consulter.html.twig', [
+                'professionnel' => $professionnel,
+            ]);
+        }
+    
+        return $this->render('professionnel/modifier.html.twig', [
+            'form' => $form->createView(),
+            'professionnel' => $professionnel,
+        ]);
     }
+    
 
     public function supprimer(ManagerRegistry $doctrine, int $id): Response
     {

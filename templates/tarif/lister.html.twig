@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des tarif{% endblock %}
+{% block body %}
+    <h1>Liste des Tarif</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Quotient Familial</th>
+                <th>Type de Cours</th>
+                <th>Montant</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in tTarif %}
+                <tr>
+                    <td>{{ t.quotientfamilial.libelle }}</td>
+                    <td>{{ t.typecours.libelle }}</td>
+                    <td>{{ t.montant }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">
+                        Aucun tarif n'a été trouvé.
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
