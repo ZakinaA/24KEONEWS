@@ -3,7 +3,9 @@
 {% endblock %}
 {% block body %}
 	<h1>Liste des élèves</h1>
+    {% if is_granted('ROLE_GEST') %}
 	<a class="bouton-ajouter" href="{{ path('app_eleve_ajouter') }}">Ajouter un élève</a>
+    {% endif %}
 	<table>
 		<thead>
 			<tr>
@@ -31,8 +33,12 @@
 					<td>{{ eleve.mail}}</td>
 					<td>
 						<a class="bouton-consulter" href="{{ path('app_eleve_consulter', { id: eleve.id }) }}">Consulter</a>
+    					{% if is_granted('ROLE_GEST') %}
 						<a class="bouton-modifier" href="{{ path('app_eleve_modifier', { id: eleve.id }) }}">Modifier</a>
+    					{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
 						<a class="bouton-supprimer" href="{{ path('app_eleve_supprimer', { id: eleve.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce professionnel ?')">Supprimer</a>
+						{% endif %}
 					</td>
 				</tr>
 			{% else %}

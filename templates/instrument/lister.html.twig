@@ -3,7 +3,9 @@
 {% endblock %}
 {% block body %}
 	<h1>Liste des instruments</h1>
+	{% if is_granted('ROLE_GEST') %}
 	<a class="bouton-ajouter" href="{{ path('app_instrument_ajouter') }}">Ajouter un instrument</a>
+	{% endif %}
 	<table>
 		<thead>
 			<tr>
@@ -47,8 +49,12 @@
 					</td>
 					<td>
 						<a class="bouton-consulter" href="{{ path('app_instrument_consulter', { id: i.id }) }}">Consulter</a>
+						{% if is_granted('ROLE_GEST') %}
 						<a class="bouton-modifier" href="{{ path('app_instrument_modifier', { id: i.id }) }}">Modifier</a>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
 						<a class="bouton-supprimer" href="{{ path('app_instrument_supprimer', { id: i.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette intervention?')">Supprimer</a>
+						{% endif %}
 					</td>
 				</tr>
 			{% else %}
