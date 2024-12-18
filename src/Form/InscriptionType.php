@@ -33,7 +33,7 @@ class InscriptionType extends AbstractType
         'attr' => ['class' => 'form-control']
     ])
     ->add('enregistrer', SubmitType::class, [
-        'label' => 'Nouveau cours',
+        'label' => 'Nouvelle inscription',
         'attr' => ['class' => 'btn btn-primary']
     ]);
 
