@@ -94,7 +94,7 @@ class InstrumentController extends AbstractController
             }
             else
             {
-                return $this->render('instrument/ajouter.html.twig', array(
+                return $this->render('instrument/modifier.html.twig', array(
                     'form' => $form->createView(),
                 ));
             }
