@@ -46,6 +46,21 @@ app_typeinstrument_lister:
     path: /typeinstrument/lister
     controller: App\Controller\TypeInstrumentController::lister
 
+app_typeinstrument_consulter:
+    path: /typeinstrument/consulter/{id}
+    controller: App\Controller\TypeInstrumentController::consulter
+
+app_typeinstrument_ajouter:
+    path: /typeinstrument/ajouter
+    controller: App\Controller\TypeInstrumentController::ajouter
+
+app_typeinstrument_modifier:
+    path: /typeinstrument/modifier/{id}
+    controller: App\Controller\TypeInstrumentController::modifier
+
+app_typeinstrument_supprimer:
+    path: /typeinstrument/supprimer/{id}
+    controller: App\Controller\TypeInstrumentController::supprimer
 # app_accessoire
 
 app_Accessoire:

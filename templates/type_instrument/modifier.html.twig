@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier une type instrument{% endblock %}
+{% block body %}
+    <a class="bouton-arriere" href="{{ path('app_typeinstrument_lister') }}">Retourner en arrière</a>
+    <h1>Modifier un type instrument</h1>    
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}
+{% block javascripts %}
+{% endblock %}
