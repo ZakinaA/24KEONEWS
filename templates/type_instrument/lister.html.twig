@@ -3,8 +3,9 @@
 {% block body %}
 	<h1>Liste des types d'instruments</h1>
 			<a class="bouton-ajouter" href="{{ path('app_typeinstrument_ajouter') }}">Ajouter un Types insturment</a>
-
-
+    {% if is_granted('ROLE_GEST') %}
+	<a class="bouton-ajouter" href="#">Ajouter un nouveau type d'instrument</a>
+	{% endif %}
 	<table>
 		<thead>
 			<tr>
@@ -24,11 +25,15 @@
             Non défini
           {% endif %}
 			    </td>
-                    <td>
-                        <a class="bouton-consulter" href="{{ path('app_typeinstrument_consulter', { id: ti.id }) }}">Consulter</a>
-                        <a class="bouton-modifier" href="{{ path('app_typeinstrument_modifier', { id: ti.id }) }}">Modifier</a>
-                        <a class="bouton-supprimer" href="{{ path('app_typeinstrument_supprimer', { id: ti.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette intervention?')">Supprimer</a>
-                    </td>
+               <td>
+                   <a class="bouton-consulter" href="{{ path('app_typeinstrument_lister', { id: ti.id }) }}">Consulter</a>
+    					     {% if is_granted('ROLE_GEST') %}
+                   <a class="bouton-modifier" href="{{ path('app_typeinstrument_lister', { id: ti.id }) }}">Modifier</a>
+                   {% endif %}
+                   {% if is_granted('ROLE_ADMIN') %}
+                   <a class="bouton-supprimer" href="{{ path('app_typeinstrument_lister', { id: ti.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette intervention?')">Supprimer</a>
+               {% endif %}
+					</td>
 				</tr>
 			{% else %}
 				<tr>

@@ -10,8 +10,7 @@
 
 <div class="example-wrapper">
     <h1>Bienvenue sur le projet utilisateurs</h1>
-    {% if is_granted('ROLE_ELEVE') %}
-    {% else %}
+    {% if not is_granted('ROLE_ELEVE') %}
         <a class="bouton-arriere" href="{{ path('app_registration_register') }} ">S'inscrire</a>
         <a class="bouton-arriere" href="{{ path('app_security_login') }} ">Se connecter</a>
     {% endif %}

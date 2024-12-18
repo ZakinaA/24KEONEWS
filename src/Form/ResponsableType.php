@@ -43,7 +43,7 @@ class ResponsableType extends AbstractType
             ])
             ->add('enregistrer', SubmitType::class, [
                 'label' => 'Nouveau Responsable',
-                'attr' => ['class' => 'btn btn-primary'] // Classe Bootstrap pour le bouton
+                'attr' => ['class' => 'btn btn-primary']
             ]);
     }
 

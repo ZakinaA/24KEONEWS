@@ -97,7 +97,7 @@ app_professeur:
     path: /professeur
     controller: App\Controller\ProfesseurController::index
 
-app_lister_professeur:
+app_professeur_lister:
     path: /professeur/lister
     controller: App\Controller\ProfesseurController::lister
 
@@ -295,8 +295,8 @@ app_quotient_familial_consulter:
 
 # Authentification
 
-app_auth:
-    path: /auth
+app_security_auth:
+    path: /security/auth/
     controller: App\Controller\AuthController::index
 
 # Registration
@@ -314,3 +314,36 @@ app_security_login:
 app_security_logout:
     path: /security/logout
     controller: App\Controller\SecurityController::logout
+
+
+# Metier 
+
+app_metier_lister:
+    path: /metier/lister
+    controller: App\Controller\MetierController::lister
+
+app_metier_consulter:
+    path: /metier/consulter/{id}
+    controller: App\Controller\MetierController::consulter
+
+app_metier_ajouter:
+    path: /metier/ajouter
+    controller: App\Controller\MetierController::ajouter
+
+app_metier_modifier:
+    path: /metier/modifier/{id}
+    controller: App\Controller\MetierController::modifier
+
+app_metier_supprimer:
+    path: /metier/supprimer/{id}
+    controller: App\Controller\MetierController::supprimer
+
+#Tarif
+
+app_tarif_index:
+    path: /tarif/index
+    controller: App\Controller\TarifController::index
+
+app_tarif_lister:
+    path: /tarif/lister
+    controller: App\Controller\TarifController::lister

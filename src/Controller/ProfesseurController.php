@@ -104,6 +104,6 @@ class ProfesseurController extends AbstractController
         $entityManager->remove($professeur); 
         $entityManager->flush();
    
-        return $this->redirectToRoute('app_lister_professeur');
+        return $this->redirectToRoute('app_professeur_lister');
     }
 }

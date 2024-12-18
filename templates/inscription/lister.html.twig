@@ -4,6 +4,9 @@
 
 {% block body %}
     <h1>Liste des inscriptions</h1>
+    {% if is_granted('ROLE_GEST') %}
+	<a class="bouton-ajouter" href="{{ path('app_inscription_ajouter') }}">Ajouter une inscription</a>
+	{% endif %}
     <table>
         <thead>
             <tr>
@@ -21,8 +24,12 @@
                     <td>{{ i.eleve.nom }}</td>
                     <td>
                         <a class="bouton-consulter" href="{{ path('app_inscription_consulter', { id: i.id }) }}">Consulter</a>
+    					{% if is_granted('ROLE_GEST') %}
                         <a class="bouton-modifier" href="{{ path('app_inscription_modifier', { id: i.id }) }}">Modifier</a>
+    					{% endif %}
+    					{% if is_granted('ROLE_ADMIN') %}
                         <a class="bouton-supprimer" href="{{ path('app_inscription_supprimer', { id: i.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet inscription?')">Supprimer</a>
+    					{% endif %}
                     </td>
                 </tr>
             {% else %}

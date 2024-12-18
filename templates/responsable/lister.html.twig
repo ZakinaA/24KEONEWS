@@ -2,7 +2,9 @@
 {% block title %}Liste des responsables{% endblock %}
 {% block body %}
 	<h1>Liste des responsables</h1>
-	<a class="bouton-ajouter" href="#">Ajouter un responsable</a>
+    {% if is_granted('ROLE_GEST') %}
+	<a class="bouton-ajouter" href="{{ path('app_responsable_ajouter') }}">Ajouter un responsable</a>
+	{% endif %}
 	<table>
 		<thead>
 			<tr>
@@ -30,9 +32,13 @@
 					<td>{{ r.mail }}</td>
                     <td>
                         <a class="bouton-consulter" href="{{ path('app_responsable_consulter', { id: r.id }) }}">Consulter</a>
+    					{% if is_granted('ROLE_GEST') %}
                         <a class="bouton-modifier" href="{{ path('app_responsable_modifier', { id: r.id }) }}">Modifier</a>
+                    	{% endif %}
+                    	{% if is_granted('ROLE_ADMIN') %}
                         <a class="bouton-supprimer" href="{{ path('app_responsable_supprimer', { id: r.id }) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette intervention?')">Supprimer</a>
-                    </td>
+                    	{% endif %}
+					</td>
 				</tr>
 			{% else %}
 				<tr>
